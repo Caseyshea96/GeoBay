@@ -1,9 +1,8 @@
-site_name: geoproject510
+site_name: GeoBay
 site_description: python package for geog 510
 site_author: Caseyshea96
-site_url: https://Caseyshea96.github.io/geoproject510
-repo_url: https://github.com/Caseyshea96/geoproject510
-
+site_url: https://Caseyshea96.github.io/GeoBay
+repo_url: https://github.com/Caseyshea96/GeoBay
 copyright: "Copyright &copy; 2024 - 2024 Casey Shea"
 
 theme:
@@ -78,9 +77,9 @@ nav:
     - Contributing: contributing.md
     - FAQ: faq.md
     - Changelog: changelog.md
-    - Report Issues: https://github.com/Caseyshea96/geoproject510/issues
+    - Report Issues: https://github.com/Caseyshea96/GeoBay/issues
     - Examples:
         - examples/intro.ipynb
     - API Reference:
-          - geoproject510 module: geoproject510.md
+          - GeoBay module: GeoBay.md
           - common module: common.md
