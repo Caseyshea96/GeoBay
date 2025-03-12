@@ -1,9 +1,9 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="geoproject510",
-    version="0.0.14",
-    description="A package for Geog 510",
+    name="GeoBay",
+    version="0.0.1",
+    description="A package for Geography",
     author="Casey Shea",
     author_email="shea96@gmail.com",
     packages=find_packages(),  # Automatically find packages in your directory
