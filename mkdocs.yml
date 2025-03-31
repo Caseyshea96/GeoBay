@@ -1,10 +1,10 @@
-site_name: geodev
+site_name: geobay
 site_description: A python package for geospatial analysis and mapping
-site_author: giswqs
-site_url: https://geodev.gishub.org
-repo_url: https://github.com/giswqs/geodev
+site_author: CaseyShea96
+site_url: https://caseyshea96.github.io/GeoBay/
+repo_url: https://github.com/Caseyshea96/GeoBay
 
-copyright: "Copyright &copy; 2024 - 2024 Qiusheng Wu"
+copyright: "Copyright &copy; 2024 - 2024 Casey Shea"
 
 theme:
     palette:
@@ -38,7 +38,7 @@ theme:
 
 plugins:
     - search
-    - mkdocstrings
+   # - mkdocstrings
     - git-revision-date
     - git-revision-date-localized:
           enable_creation_date: true
@@ -78,7 +78,7 @@ nav:
     - Contributing: contributing.md
     - FAQ: faq.md
     - Changelog: changelog.md
-    - Report Issues: https://github.com/giswqs/geodev/issues
+    - Report Issues: https://github.com/Caseyshea96/geobay/issues
     - Examples:
           - examples/intro.ipynb
           - examples/folium.ipynb

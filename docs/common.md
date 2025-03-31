@@ -1,3 +1,4 @@
 # common module
 
-::: geobay.common
+```{python}
+import geobay
