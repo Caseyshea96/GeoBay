@@ -1,7 +1,7 @@
 # Usage
 
-To use GeoProject510 in a project:
+To use Geobay in a project:
 
 ```
-import geoproject510
+import geobay
 ```

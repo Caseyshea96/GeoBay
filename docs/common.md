@@ -1,3 +1,3 @@
 # common module
 
-::: geoproject510.common
+::: geobay.common

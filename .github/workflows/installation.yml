@@ -28,4 +28,4 @@ jobs:
             - name: Install package
               run: pip install .
             - name: Test import
-              run: python -c "import geoproject510; print('geoproject510 import successful')"
+              run: python -c "import geobay; print('geobay import successful')"

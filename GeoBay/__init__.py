@@ -1,4 +1,4 @@
-"""Top-level package for GeoProject510."""
+"""Top-level package for Geobay."""
 
 __author__ = """Casey Shea"""
 __email__ = "shea96@gmail.com"
