@@ -2,6 +2,6 @@
 
 __author__ = """Casey Shea"""
 __email__ = "shea96@gmail.com"
-__version__ = "0.0.14"
+__version__ = "0.0.15"
 
 from .GeoBay import *
