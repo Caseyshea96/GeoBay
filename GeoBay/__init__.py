@@ -4,4 +4,4 @@ __author__ = """Casey Shea"""
 __email__ = "shea96@gmail.com"
 __version__ = "0.0.6"
 
-from .geobay import CustomIpyleafletMap, FoliumMap  # Use relative import
+from .GeoBay import *

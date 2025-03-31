@@ -43,7 +43,7 @@ plugins:
     - git-revision-date-localized:
           enable_creation_date: true
           type: timeago
-    # - pdf-export
+    #- pdf-export
     - mkdocs-jupyter:
           include_source: True
           ignore_h1_titles: True
@@ -82,6 +82,5 @@ nav:
     - Examples:
         - examples/intro.ipynb
     - API Reference:
-          - GeoBay module: GeoBay.md
+          - geodev module: geodev.md
           - common module: common.md
-    #      - foliumap module: foliumap.md
