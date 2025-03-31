@@ -1,4 +1,0 @@
-
-# GeoBay module
-
-:::GeoBay.GeoBay
