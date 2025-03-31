@@ -1,2 +1,4 @@
 """Unit test package for geobay."""
-from geobay import CustomIpyleafletMap
+"""GeoBay package initialization."""
+from .custom_map import CustomIpyleafletMap  # Adjust module name accordingly
+
