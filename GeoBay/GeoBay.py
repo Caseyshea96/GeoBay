@@ -1,13 +1,13 @@
 """Main module."""
-import geopandas as gpd
+#ipyleaflet module
 from ipyleaflet import Map as IpyleafletMap, TileLayer, GeoJSON, LayersControl
+import geopandas as gpd
 
-class Map(IpyleafletMap):
-    """
-    A custom Map class that extends ipyleaflet.Map with additional functionalities
-    for basemap support, layer control, and vector data integration.
-    """
-
+class CustomIpyleafletMap(IpyleafletMap):
+    def __init__(self, center, zoom=12, **kwargs):
+        # Initialize the map with the center and zoom parameters
+        super().__init__(center=center, zoom=zoom, **kwargs)
+        
     def add_basemap(self, basemap_name: str):
         """
         Adds a basemap to the map.
@@ -64,22 +64,30 @@ class Map(IpyleafletMap):
         geo_json_layer = GeoJSON(data=geo_json_data)
         self.add_layer(geo_json_layer)
 
-# geobay.py
+    def show_map(self):
+        """
+        Displays the ipyleaflet map.
+        """
+        return self
+
+
+
+# folium module
 
 import folium
 import geopandas as gpd
 from folium.plugins import Draw
 
 class FoliumMap:
-    def __init__(self, center=(52.204793, 360.121558), zoom_start=6):
+    def __init__(self, location, zoom_start=3, **kwargs):
         """
         Initializes a folium map centered at a given location with a specified zoom level.
         
         Parameters:
-        center (tuple): Latitude and longitude coordinates for the map center.
+        location (tuple): Latitude and longitude coordinates for the map center.
         zoom_start (int): The initial zoom level of the map.
         """
-        self.map = folium.Map(location=center, zoom_start=zoom_start)
+        self.map = folium.Map(location=location, zoom_start=zoom_start, **kwargs)
 
     def add_basemap(self, basemap='OpenStreetMap'):
         """
@@ -117,3 +125,4 @@ class FoliumMap:
         Displays the folium map in the Jupyter notebook or Python script.
         """
         return self.map
+
