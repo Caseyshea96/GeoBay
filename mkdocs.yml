@@ -40,9 +40,9 @@ plugins:
     - search
     - mkdocstrings
     - git-revision-date
-   # - git-revision-date-localized:
-    #      enable_creation_date: true
-     #     type: timeago
+    - git-revision-date-localized:
+          enable_creation_date: true
+          type: timeago
     # - pdf-export
     - mkdocs-jupyter:
           include_source: True
@@ -82,6 +82,6 @@ nav:
     - Examples:
         - examples/intro.ipynb
     - API Reference:
-          - geodev module: geodev.md
+          - GeoBay module: GeoBay.md
           - common module: common.md
-          - foliumap module: foliumap.md
+    #      - foliumap module: foliumap.md
