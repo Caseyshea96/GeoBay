@@ -38,11 +38,11 @@ theme:
 
 plugins:
     - search
-   # - mkdocstrings
+    - mkdocstrings
     - git-revision-date
-    - git-revision-date-localized:
-          enable_creation_date: true
-          type: timeago
+   # - git-revision-date-localized:
+    #      enable_creation_date: true
+     #     type: timeago
     # - pdf-export
     - mkdocs-jupyter:
           include_source: True
@@ -80,9 +80,7 @@ nav:
     - Changelog: changelog.md
     - Report Issues: https://github.com/Caseyshea96/geobay/issues
     - Examples:
-          - examples/intro.ipynb
-          - examples/folium.ipynb
-          - examples/map.ipynb
+        - examples/intro.ipynb
     - API Reference:
           - geodev module: geodev.md
           - common module: common.md
