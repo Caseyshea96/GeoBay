@@ -79,6 +79,6 @@ nav:
     - Examples:
         - examples/intro.ipynb
     - API Reference:
-        - geobay module: GeoBay.md
+        - geobay module: geobay.md
         - Foliumap module: foliumap.md
-        - common module: Common.md
+        - common module: common.md
