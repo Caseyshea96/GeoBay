@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 
-"""Tests for `geoproject510` package."""
+"""Tests for `geobay` package."""
 
 
 import unittest
 
-from geoproject510 import geoproject510
+from geobay import geobay
 
 
-class TestGeoproject510(unittest.TestCase):
-    """Tests for `geoproject510` package."""
+class TestGeobay(unittest.TestCase):
+    """Tests for `geobay` package."""
 
     def setUp(self):
         """Set up test fixtures, if any."""
