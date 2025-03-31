@@ -1,6 +1,6 @@
 [project]
 name = "GeoBay"
-version = "0.0.2"
+version = "0.0.10"
 dynamic = [
     "dependencies",
 ]
@@ -8,11 +8,11 @@ description = "A python package for geospatial analysis and mapping"
 readme = "README.md"
 requires-python = ">=3.8"
 keywords = [
-    "geodev",
+    "GeoBay",
 ]
 license = {text = "MIT License"}
 authors = [
-  {name = "Qiusheng Wu", email = "giswqs@gmail.com"},
+  {name = "Casey Shea", email = "shea96@gmail.com"},
 ]
 classifiers = [
     "Intended Audience :: Developers",
@@ -26,11 +26,11 @@ classifiers = [
 ]
 
 [project.entry-points."console_scripts"]
-geodev = "geodev.cli:main"
+GeoBay = "GeoBay.cli:main"
 
 [project.optional-dependencies]
 all = [
-    "geodev[extra]",
+    "GeoBay[extra]",
 ]
 
 extra = [
@@ -40,7 +40,7 @@ extra = [
 
 [tool]
 [tool.setuptools.packages.find]
-include = ["geodev*"]
+include = ["GeoBay*"]
 exclude = ["docs*"]
 
 [tool.setuptools.dynamic]
@@ -62,7 +62,7 @@ search = 'version = "{current_version}"'
 replace = 'version = "{new_version}"'
 
 [[tool.bumpversion.files]]
-filename = "geodev/__init__.py"
+filename = "GeoBay/__init__.py"
 search = '__version__ = "{current_version}"'
 replace = '__version__ = "{new_version}"'
 
@@ -75,7 +75,7 @@ max-line-length = 88
 
 
 [project.urls]
-Homepage = "https://github.com/giswqs/geodev"
+Homepage = "https://github.com/Caseyshea96/GeoBay"
 
 [build-system]
 requires = ["setuptools>=64", "setuptools_scm>=8"]
