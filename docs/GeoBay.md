@@ -1,4 +1,4 @@
 
 # GeoBay module
 
-:::GeoBay.GeoBay
+::: GeoBay.GeoBay
