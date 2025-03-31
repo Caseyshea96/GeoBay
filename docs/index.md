@@ -1,7 +1,7 @@
 # Welcome to Geobay
 
 
-[![image](https://img.shields.io/pypi/v/geoproject510.svg)](https://pypi.python.org/pypi/GeoBay)
+[![image](https://img.shields.io/pypi/v/GeoBay.svg)](https://pypi.python.org/pypi/GeoBay)
 
 
 **python package for geog 510**
@@ -14,3 +14,5 @@
 ## Features
 
 -   TODO
+
+import GeoBay

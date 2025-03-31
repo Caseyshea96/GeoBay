@@ -9,8 +9,6 @@ copyright: "Copyright &copy; 2024 - 2024 Casey Shea"
 theme:
     palette:
         - scheme: default
-          #   primary: blue
-          #   accent: indigo
           toggle:
               icon: material/toggle-switch-off-outline
               name: Switch to dark mode
@@ -23,8 +21,6 @@ theme:
     name: material
     icon:
         repo: fontawesome/brands/github
-    # logo: assets/logo.png
-    # favicon: assets/favicon.png
     features:
         - navigation.instant
         - navigation.tracking
@@ -38,19 +34,25 @@ theme:
 
 plugins:
     - search
-    - mkdocstrings
+    - mkdocstrings:
+        handlers:
+          python:
+            options:
+              members: true
+              show_signature: true
     - git-revision-date
     #- git-revision-date-localized:
-     #     enable_creation_date: true
-      #    type: timeago
-    #- pdf-export
+      #  enable_creation_date: true
+     #   type: timeago
     - mkdocs-jupyter:
-          include_source: True
-          ignore_h1_titles: True
-          execute: True
-          allow_errors: false
-          ignore: ["conf.py"]
-          execute_ignore: ["*ignore.ipynb"]
+        include_source: true
+        ignore_h1_titles: true
+        execute: true
+        allow_errors: false
+        ignore:
+          - conf.py
+        execute_ignore:
+          - "*ignore.ipynb"
 
 markdown_extensions:
     - admonition
@@ -62,14 +64,9 @@ markdown_extensions:
     - md_in_html
     - pymdownx.superfences
     - pymdownx.highlight:
-          linenums: true
+        linenums: true
     - toc:
-          permalink: true
-
-# extra:
-#     analytics:
-#         provider: google
-#         property: UA-XXXXXXXXX-X
+        permalink: true
 
 nav:
     - Home: index.md
@@ -82,5 +79,6 @@ nav:
     - Examples:
         - examples/intro.ipynb
     - API Reference:
-          - geodev module: geodev.md
-          - common module: common.md
+        - geobay module: GeoBay.md
+        - Foliumap module: foliumap.md
+        - common module: Common.md
