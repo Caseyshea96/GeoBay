@@ -69,3 +69,5 @@ class CustomIpyleafletMap(IpyleafletMap):
         Displays the ipyleaflet map.
         """
         return self
+    
+
