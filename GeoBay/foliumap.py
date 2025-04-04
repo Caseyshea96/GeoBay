@@ -1,8 +1,6 @@
-# folium module
-
 import folium
 import geopandas as gpd
-from folium.plugins import Draw
+from folium.plugins import Draw, SideBySide
 
 class FoliumMap:
     def __init__(self, location, zoom_start=3, **kwargs):
@@ -46,26 +44,6 @@ class FoliumMap:
             geo_data = geo_data.to_json()
         folium.GeoJson(geo_data).add_to(self.map)
     
-    def show_map(self):
-        """
-        Displays the folium map in the Jupyter notebook or Python script.
-        """
-        return self.map
-
-import folium
-from folium.plugins import SideBySide
-
-class FoliumMap:
-    def __init__(self, location, zoom_start=3, **kwargs):
-        """
-        Initializes a folium map centered at a given location with a specified zoom level.
-        
-        Parameters:
-        location (tuple): Latitude and longitude coordinates for the map center.
-        zoom_start (int): The initial zoom level of the map.
-        """
-        self.map = folium.Map(location=location, zoom_start=zoom_start, **kwargs)
-
     def add_split_map(self, left_layer='OpenStreetMap', right_layer='Stamen Terrain'):
         """
         Adds a side-by-side split view of two different tile layers.
@@ -101,12 +79,6 @@ class FoliumMap:
         # Add the side-by-side split functionality
         side_by_side = SideBySide(left=left, right=right)
         side_by_side.add_to(self.map)
-
-    def add_layer_control(self):
-        """
-        Adds a layer control widget to the folium map for toggling layers.
-        """
-        folium.LayerControl().add_to(self.map)
 
     def show_map(self):
         """
