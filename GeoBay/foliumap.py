@@ -1,6 +1,6 @@
 import folium
 import geopandas as gpd
-from folium.plugins import Draw, SideBySide
+from folium.plugins import Draw, SideBySideLayers
 
 class FoliumMap:
     def __init__(self, location, zoom_start=3, **kwargs):
