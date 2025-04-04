@@ -1,6 +1,5 @@
 import folium
-import geopandas as gpd
-from folium.plugins import Draw, SideBySideLayers
+from folium.plugins import SideBySideLayers
 
 class FoliumMap:
     def __init__(self, location, zoom_start=3, **kwargs):
@@ -77,7 +76,7 @@ class FoliumMap:
         right.add_to(self.map)
 
         # Add the side-by-side split functionality
-        side_by_side = SideBySideLayers(left=left, right=right)
+        side_by_side = SideBySideLayers(left, right)
         side_by_side.add_to(self.map)
 
     def show_map(self):
