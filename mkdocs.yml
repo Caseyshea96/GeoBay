@@ -81,4 +81,3 @@ nav:
     - API Reference:
         - geobay module: geobay.md
         - Foliumap module: foliumap.md
-        - common module: common.md
