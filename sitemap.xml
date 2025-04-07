@@ -2,42 +2,54 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://caseyshea96.github.io/GeoBay/</loc>
-         <lastmod>2025-04-04</lastmod>
-    </url>
-    <url>
-         <loc>https://caseyshea96.github.io/GeoBay/Foliumap/</loc>
-         <lastmod>2025-04-04</lastmod>
-    </url>
-    <url>
-         <loc>https://caseyshea96.github.io/GeoBay/GeoBay/</loc>
-         <lastmod>2025-04-04</lastmod>
+         <lastmod>2025-04-07</lastmod>
     </url>
     <url>
          <loc>https://caseyshea96.github.io/GeoBay/changelog/</loc>
-         <lastmod>2025-04-04</lastmod>
+         <lastmod>2025-04-07</lastmod>
+    </url>
+    <url>
+         <loc>https://caseyshea96.github.io/GeoBay/common/</loc>
+         <lastmod>2025-04-07</lastmod>
     </url>
     <url>
          <loc>https://caseyshea96.github.io/GeoBay/contributing/</loc>
-         <lastmod>2025-04-04</lastmod>
+         <lastmod>2025-04-07</lastmod>
     </url>
     <url>
          <loc>https://caseyshea96.github.io/GeoBay/faq/</loc>
-         <lastmod>2025-04-04</lastmod>
+         <lastmod>2025-04-07</lastmod>
+    </url>
+    <url>
+         <loc>https://caseyshea96.github.io/GeoBay/foliumap/</loc>
+         <lastmod>2025-04-07</lastmod>
+    </url>
+    <url>
+         <loc>https://caseyshea96.github.io/GeoBay/geobay/</loc>
+         <lastmod>2025-04-07</lastmod>
     </url>
     <url>
          <loc>https://caseyshea96.github.io/GeoBay/installation/</loc>
-         <lastmod>2025-04-04</lastmod>
+         <lastmod>2025-04-07</lastmod>
     </url>
     <url>
          <loc>https://caseyshea96.github.io/GeoBay/usage/</loc>
-         <lastmod>2025-04-04</lastmod>
+         <lastmod>2025-04-07</lastmod>
+    </url>
+    <url>
+         <loc>https://caseyshea96.github.io/GeoBay/examples/Lab7_Methods_Sample/</loc>
+         <lastmod>2025-04-07</lastmod>
     </url>
     <url>
          <loc>https://caseyshea96.github.io/GeoBay/examples/SplitMap_demo/</loc>
-         <lastmod>2025-04-04</lastmod>
+         <lastmod>2025-04-07</lastmod>
+    </url>
+    <url>
+         <loc>https://caseyshea96.github.io/GeoBay/examples/example/</loc>
+         <lastmod>2025-04-07</lastmod>
     </url>
     <url>
          <loc>https://caseyshea96.github.io/GeoBay/examples/intro/</loc>
-         <lastmod>2025-04-04</lastmod>
+         <lastmod>2025-04-07</lastmod>
     </url>
 </urlset>

@@ -15,10 +15,6 @@
         <link rel="canonical" href="https://caseyshea96.github.io/GeoBay/examples/SplitMap_demo/">
       
       
-        <link rel="prev" href="../../changelog/">
-      
-      
-        <link rel="next" href="../../GeoBay/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -410,20 +406,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
         
           
           <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
@@ -439,7 +433,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             Examples
@@ -450,28 +444,20 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    SplitMap demo
+    Intro
     
   </span>
   
 
       </a>
-      
     </li>
   
 
@@ -529,7 +515,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../GeoBay/" class="md-nav__link">
+      <a href="../../geobay/" class="md-nav__link">
         
   
   
@@ -552,12 +538,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Foliumap/" class="md-nav__link">
+      <a href="../../foliumap/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     Foliumap module
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../common/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    common module
     
   </span>
   
@@ -1088,45 +1097,46 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Requirement already satisfied: geobay in c:\users\shea9\miniconda3\envs\geo\lib\site-packages (0.0.25)
-Requirement already satisfied: numpy in c:\users\shea9\miniconda3\envs\geo\lib\site-packages (from geobay) (2.2.2)
-Requirement already satisfied: ipyleaflet&gt;=0.17.0 in c:\users\shea9\miniconda3\envs\geo\lib\site-packages (from geobay) (0.19.2)
-Requirement already satisfied: geopandas&gt;=0.10.0 in c:\users\shea9\miniconda3\envs\geo\lib\site-packages (from geobay) (1.0.1)
-Requirement already satisfied: pyogrio&gt;=0.7.2 in c:\users\shea9\miniconda3\envs\geo\lib\site-packages (from geopandas&gt;=0.10.0-&gt;geobay) (0.10.0)
-Requirement already satisfied: packaging in c:\users\shea9\appdata\roaming\python\python313\site-packages (from geopandas&gt;=0.10.0-&gt;geobay) (24.2)
-Requirement already satisfied: pandas&gt;=1.4.0 in c:\users\shea9\miniconda3\envs\geo\lib\site-packages (from geopandas&gt;=0.10.0-&gt;geobay) (2.2.3)
-Requirement already satisfied: pyproj&gt;=3.3.0 in c:\users\shea9\miniconda3\envs\geo\lib\site-packages (from geopandas&gt;=0.10.0-&gt;geobay) (3.6.1)
-Requirement already satisfied: shapely&gt;=2.0.0 in c:\users\shea9\miniconda3\envs\geo\lib\site-packages (from geopandas&gt;=0.10.0-&gt;geobay) (2.0.6)
-Requirement already satisfied: branca&gt;=0.5.0 in c:\users\shea9\miniconda3\envs\geo\lib\site-packages (from ipyleaflet&gt;=0.17.0-&gt;geobay) (0.6.0)
-Requirement already satisfied: ipywidgets&lt;9,&gt;=7.6.0 in c:\users\shea9\miniconda3\envs\geo\lib\site-packages (from ipyleaflet&gt;=0.17.0-&gt;geobay) (8.1.5)
-Requirement already satisfied: jupyter-leaflet&lt;0.20,&gt;=0.19 in c:\users\shea9\miniconda3\envs\geo\lib\site-packages (from ipyleaflet&gt;=0.17.0-&gt;geobay) (0.19.2)
-Requirement already satisfied: traittypes&lt;3,&gt;=0.2.1 in c:\users\shea9\miniconda3\envs\geo\lib\site-packages (from ipyleaflet&gt;=0.17.0-&gt;geobay) (0.2.1)
-Requirement already satisfied: xyzservices&gt;=2021.8.1 in c:\users\shea9\miniconda3\envs\geo\lib\site-packages (from ipyleaflet&gt;=0.17.0-&gt;geobay) (2022.9.0)
-Requirement already satisfied: jinja2 in c:\users\shea9\miniconda3\envs\geo\lib\site-packages (from branca&gt;=0.5.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (3.1.5)
-Requirement already satisfied: comm&gt;=0.1.3 in c:\users\shea9\appdata\roaming\python\python313\site-packages (from ipywidgets&lt;9,&gt;=7.6.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (0.2.2)
-Requirement already satisfied: ipython&gt;=6.1.0 in c:\users\shea9\appdata\roaming\python\python313\site-packages (from ipywidgets&lt;9,&gt;=7.6.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (9.0.1)
-Requirement already satisfied: traitlets&gt;=4.3.1 in c:\users\shea9\appdata\roaming\python\python313\site-packages (from ipywidgets&lt;9,&gt;=7.6.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (5.14.3)
-Requirement already satisfied: widgetsnbextension~=4.0.12 in c:\users\shea9\miniconda3\envs\geo\lib\site-packages (from ipywidgets&lt;9,&gt;=7.6.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (4.0.13)
-Requirement already satisfied: jupyterlab-widgets~=3.0.12 in c:\users\shea9\miniconda3\envs\geo\lib\site-packages (from ipywidgets&lt;9,&gt;=7.6.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (3.0.13)
-Requirement already satisfied: python-dateutil&gt;=2.8.2 in c:\users\shea9\appdata\roaming\python\python313\site-packages (from pandas&gt;=1.4.0-&gt;geopandas&gt;=0.10.0-&gt;geobay) (2.9.0.post0)
-Requirement already satisfied: pytz&gt;=2020.1 in c:\users\shea9\miniconda3\envs\geo\lib\site-packages (from pandas&gt;=1.4.0-&gt;geopandas&gt;=0.10.0-&gt;geobay) (2025.2)
-Requirement already satisfied: tzdata&gt;=2022.7 in c:\users\shea9\miniconda3\envs\geo\lib\site-packages (from pandas&gt;=1.4.0-&gt;geopandas&gt;=0.10.0-&gt;geobay) (2023.3)
-Requirement already satisfied: certifi in c:\users\shea9\miniconda3\envs\geo\lib\site-packages (from pyogrio&gt;=0.7.2-&gt;geopandas&gt;=0.10.0-&gt;geobay) (2025.1.31)
-Requirement already satisfied: colorama in c:\users\shea9\appdata\roaming\python\python313\site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7.6.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (0.4.6)
-Requirement already satisfied: decorator in c:\users\shea9\appdata\roaming\python\python313\site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7.6.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (5.2.1)
-Requirement already satisfied: ipython-pygments-lexers in c:\users\shea9\appdata\roaming\python\python313\site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7.6.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (1.1.1)
-Requirement already satisfied: jedi&gt;=0.16 in c:\users\shea9\appdata\roaming\python\python313\site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7.6.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (0.19.2)
-Requirement already satisfied: matplotlib-inline in c:\users\shea9\appdata\roaming\python\python313\site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7.6.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (0.1.7)
-Requirement already satisfied: prompt_toolkit&lt;3.1.0,&gt;=3.0.41 in c:\users\shea9\appdata\roaming\python\python313\site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7.6.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (3.0.50)
-Requirement already satisfied: pygments&gt;=2.4.0 in c:\users\shea9\appdata\roaming\python\python313\site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7.6.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (2.19.1)
-Requirement already satisfied: stack_data in c:\users\shea9\appdata\roaming\python\python313\site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7.6.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (0.6.3)
-Requirement already satisfied: six&gt;=1.5 in c:\users\shea9\appdata\roaming\python\python313\site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas&gt;=1.4.0-&gt;geopandas&gt;=0.10.0-&gt;geobay) (1.17.0)
-Requirement already satisfied: MarkupSafe&gt;=2.0 in c:\users\shea9\miniconda3\envs\geo\lib\site-packages (from jinja2-&gt;branca&gt;=0.5.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (3.0.2)
-Requirement already satisfied: parso&lt;0.9.0,&gt;=0.8.4 in c:\users\shea9\appdata\roaming\python\python313\site-packages (from jedi&gt;=0.16-&gt;ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7.6.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (0.8.4)
-Requirement already satisfied: wcwidth in c:\users\shea9\appdata\roaming\python\python313\site-packages (from prompt_toolkit&lt;3.1.0,&gt;=3.0.41-&gt;ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7.6.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (0.2.13)
-Requirement already satisfied: executing&gt;=1.2.0 in c:\users\shea9\appdata\roaming\python\python313\site-packages (from stack_data-&gt;ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7.6.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (2.2.0)
-Requirement already satisfied: asttokens&gt;=2.1.0 in c:\users\shea9\appdata\roaming\python\python313\site-packages (from stack_data-&gt;ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7.6.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (3.0.0)
-Requirement already satisfied: pure-eval in c:\users\shea9\appdata\roaming\python\python313\site-packages (from stack_data-&gt;ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7.6.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (0.2.3)
+<pre>Requirement already satisfied: geobay in c:\users\shea9\documents\github\geo\lib\site-packages (0.0.27)
+Requirement already satisfied: numpy in c:\users\shea9\documents\github\geo\lib\site-packages (from geobay) (2.2.4)
+Requirement already satisfied: ipyleaflet&gt;=0.17.0 in c:\users\shea9\documents\github\geo\lib\site-packages (from geobay) (0.19.2)
+Requirement already satisfied: geopandas&gt;=0.10.0 in c:\users\shea9\documents\github\geo\lib\site-packages (from geobay) (1.0.1)
+Requirement already satisfied: pyogrio&gt;=0.7.2 in c:\users\shea9\documents\github\geo\lib\site-packages (from geopandas&gt;=0.10.0-&gt;geobay) (0.10.0)
+Requirement already satisfied: packaging in c:\users\shea9\documents\github\geo\lib\site-packages (from geopandas&gt;=0.10.0-&gt;geobay) (24.2)
+Requirement already satisfied: pandas&gt;=1.4.0 in c:\users\shea9\documents\github\geo\lib\site-packages (from geopandas&gt;=0.10.0-&gt;geobay) (2.2.3)
+Requirement already satisfied: pyproj&gt;=3.3.0 in c:\users\shea9\documents\github\geo\lib\site-packages (from geopandas&gt;=0.10.0-&gt;geobay) (3.7.1)
+Requirement already satisfied: shapely&gt;=2.0.0 in c:\users\shea9\documents\github\geo\lib\site-packages (from geopandas&gt;=0.10.0-&gt;geobay) (2.0.7)
+Requirement already satisfied: branca&gt;=0.5.0 in c:\users\shea9\documents\github\geo\lib\site-packages (from ipyleaflet&gt;=0.17.0-&gt;geobay) (0.8.1)
+Requirement already satisfied: ipywidgets&lt;9,&gt;=7.6.0 in c:\users\shea9\documents\github\geo\lib\site-packages (from ipyleaflet&gt;=0.17.0-&gt;geobay) (8.1.5)
+Requirement already satisfied: jupyter-leaflet&lt;0.20,&gt;=0.19 in c:\users\shea9\documents\github\geo\lib\site-packages (from ipyleaflet&gt;=0.17.0-&gt;geobay) (0.19.2)
+Requirement already satisfied: traittypes&lt;3,&gt;=0.2.1 in c:\users\shea9\documents\github\geo\lib\site-packages (from ipyleaflet&gt;=0.17.0-&gt;geobay) (0.2.1)
+Requirement already satisfied: xyzservices&gt;=2021.8.1 in c:\users\shea9\documents\github\geo\lib\site-packages (from ipyleaflet&gt;=0.17.0-&gt;geobay) (2025.1.0)
+Requirement already satisfied: jinja2&gt;=3 in c:\users\shea9\documents\github\geo\lib\site-packages (from branca&gt;=0.5.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (3.1.6)
+Requirement already satisfied: comm&gt;=0.1.3 in c:\users\shea9\documents\github\geo\lib\site-packages (from ipywidgets&lt;9,&gt;=7.6.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (0.2.2)
+Requirement already satisfied: ipython&gt;=6.1.0 in c:\users\shea9\documents\github\geo\lib\site-packages (from ipywidgets&lt;9,&gt;=7.6.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (9.0.2)
+Requirement already satisfied: traitlets&gt;=4.3.1 in c:\users\shea9\documents\github\geo\lib\site-packages (from ipywidgets&lt;9,&gt;=7.6.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (5.14.3)
+Requirement already satisfied: widgetsnbextension~=4.0.12 in c:\users\shea9\documents\github\geo\lib\site-packages (from ipywidgets&lt;9,&gt;=7.6.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (4.0.13)
+Requirement already satisfied: jupyterlab-widgets~=3.0.12 in c:\users\shea9\documents\github\geo\lib\site-packages (from ipywidgets&lt;9,&gt;=7.6.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (3.0.13)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in c:\users\shea9\documents\github\geo\lib\site-packages (from pandas&gt;=1.4.0-&gt;geopandas&gt;=0.10.0-&gt;geobay) (2.9.0.post0)
+Requirement already satisfied: pytz&gt;=2020.1 in c:\users\shea9\documents\github\geo\lib\site-packages (from pandas&gt;=1.4.0-&gt;geopandas&gt;=0.10.0-&gt;geobay) (2025.2)
+Requirement already satisfied: tzdata&gt;=2022.7 in c:\users\shea9\documents\github\geo\lib\site-packages (from pandas&gt;=1.4.0-&gt;geopandas&gt;=0.10.0-&gt;geobay) (2025.2)
+Requirement already satisfied: certifi in c:\users\shea9\documents\github\geo\lib\site-packages (from pyogrio&gt;=0.7.2-&gt;geopandas&gt;=0.10.0-&gt;geobay) (2025.1.31)
+Requirement already satisfied: colorama in c:\users\shea9\documents\github\geo\lib\site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7.6.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (0.4.6)
+Requirement already satisfied: decorator in c:\users\shea9\documents\github\geo\lib\site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7.6.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (5.2.1)
+Requirement already satisfied: ipython-pygments-lexers in c:\users\shea9\documents\github\geo\lib\site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7.6.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (1.1.1)
+Requirement already satisfied: jedi&gt;=0.16 in c:\users\shea9\documents\github\geo\lib\site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7.6.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (0.19.2)
+Requirement already satisfied: matplotlib-inline in c:\users\shea9\documents\github\geo\lib\site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7.6.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (0.1.7)
+Requirement already satisfied: prompt_toolkit&lt;3.1.0,&gt;=3.0.41 in c:\users\shea9\documents\github\geo\lib\site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7.6.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (3.0.50)
+Requirement already satisfied: pygments&gt;=2.4.0 in c:\users\shea9\documents\github\geo\lib\site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7.6.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (2.19.1)
+Requirement already satisfied: stack_data in c:\users\shea9\documents\github\geo\lib\site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7.6.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (0.6.3)
+Requirement already satisfied: typing_extensions&gt;=4.6 in c:\users\shea9\documents\github\geo\lib\site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7.6.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (4.13.0)
+Requirement already satisfied: MarkupSafe&gt;=2.0 in c:\users\shea9\documents\github\geo\lib\site-packages (from jinja2&gt;=3-&gt;branca&gt;=0.5.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (3.0.2)
+Requirement already satisfied: six&gt;=1.5 in c:\users\shea9\documents\github\geo\lib\site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas&gt;=1.4.0-&gt;geopandas&gt;=0.10.0-&gt;geobay) (1.17.0)
+Requirement already satisfied: parso&lt;0.9.0,&gt;=0.8.4 in c:\users\shea9\documents\github\geo\lib\site-packages (from jedi&gt;=0.16-&gt;ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7.6.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (0.8.4)
+Requirement already satisfied: wcwidth in c:\users\shea9\documents\github\geo\lib\site-packages (from prompt_toolkit&lt;3.1.0,&gt;=3.0.41-&gt;ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7.6.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (0.2.13)
+Requirement already satisfied: executing&gt;=1.2.0 in c:\users\shea9\documents\github\geo\lib\site-packages (from stack_data-&gt;ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7.6.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (2.2.0)
+Requirement already satisfied: asttokens&gt;=2.1.0 in c:\users\shea9\documents\github\geo\lib\site-packages (from stack_data-&gt;ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7.6.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (3.0.0)
+Requirement already satisfied: pure-eval in c:\users\shea9\documents\github\geo\lib\site-packages (from stack_data-&gt;ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7.6.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (0.2.3)
 Note: you may need to restart the kernel to use updated packages.
 </pre>
 </div>
@@ -1220,7 +1230,7 @@ my_map.show_map()
             &lt;meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" /&gt;
             &lt;style&gt;
-                #map_63386a5fa8a91f13f79911321fa84aed {
+                #map_7fad562e1491136cd50fceb0c6581cb7 {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -1235,14 +1245,14 @@ my_map.show_map()
 &lt;body&gt;
     
     
-            &lt;div class="folium-map" id="map_63386a5fa8a91f13f79911321fa84aed" &gt;&lt;/div&gt;
+            &lt;div class="folium-map" id="map_7fad562e1491136cd50fceb0c6581cb7" &gt;&lt;/div&gt;
         
 &lt;/body&gt;
 &lt;script&gt;
     
     
-            var map_63386a5fa8a91f13f79911321fa84aed = L.map(
-                "map_63386a5fa8a91f13f79911321fa84aed",
+            var map_7fad562e1491136cd50fceb0c6581cb7 = L.map(
+                "map_7fad562e1491136cd50fceb0c6581cb7",
                 {
                     center: [38.5, -98.0],
                     crs: L.CRS.EPSG3857,
@@ -1259,7 +1269,7 @@ my_map.show_map()
 
         
     
-            var tile_layer_f4ae841f04a753021138f129ff60c371 = L.tileLayer(
+            var tile_layer_9f134f7b74b9c9ef07cff94f841b4e44 = L.tileLayer(
                 "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
                 {
   "minZoom": 0,
@@ -1276,10 +1286,10 @@ my_map.show_map()
             );
         
     
-            tile_layer_f4ae841f04a753021138f129ff60c371.addTo(map_63386a5fa8a91f13f79911321fa84aed);
+            tile_layer_9f134f7b74b9c9ef07cff94f841b4e44.addTo(map_7fad562e1491136cd50fceb0c6581cb7);
         
     
-            var tile_layer_c2cb515a6d1be2bd9743f3c17b94cb6b = L.tileLayer(
+            var tile_layer_04d2fd55143e940870c20d63f2016bfb = L.tileLayer(
                 "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
                 {
   "minZoom": 0,
@@ -1296,10 +1306,10 @@ my_map.show_map()
             );
         
     
-            tile_layer_c2cb515a6d1be2bd9743f3c17b94cb6b.addTo(map_63386a5fa8a91f13f79911321fa84aed);
+            tile_layer_04d2fd55143e940870c20d63f2016bfb.addTo(map_7fad562e1491136cd50fceb0c6581cb7);
         
     
-            var tile_layer_0188daa62129b564be210e2c2f61a4b6 = L.tileLayer(
+            var tile_layer_f260ef6a5a26ce1d91d526cff18cdbc1 = L.tileLayer(
                 "http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
                 {
   "minZoom": 0,
@@ -1316,32 +1326,32 @@ my_map.show_map()
             );
         
     
-            tile_layer_0188daa62129b564be210e2c2f61a4b6.addTo(map_63386a5fa8a91f13f79911321fa84aed);
+            tile_layer_f260ef6a5a26ce1d91d526cff18cdbc1.addTo(map_7fad562e1491136cd50fceb0c6581cb7);
         
     
-            var side_by_side_layers_e7e7a75509fc0c2ecabd6c27799fedee = L.control.sideBySide(
-                tile_layer_c2cb515a6d1be2bd9743f3c17b94cb6b, tile_layer_0188daa62129b564be210e2c2f61a4b6
-            ).addTo(map_63386a5fa8a91f13f79911321fa84aed);
+            var side_by_side_layers_01d0d6b3fba98325dd77bdf2105ab9b6 = L.control.sideBySide(
+                tile_layer_04d2fd55143e940870c20d63f2016bfb, tile_layer_f260ef6a5a26ce1d91d526cff18cdbc1
+            ).addTo(map_7fad562e1491136cd50fceb0c6581cb7);
         
     
-            var layer_control_959103816c5de1444a5677cf88397e0c_layers = {
+            var layer_control_d4f2d0b1e0dd3ff1e8e355369ea70e18_layers = {
                 base_layers : {
-                    "openstreetmap" : tile_layer_f4ae841f04a753021138f129ff60c371,
-                    "OpenStreetMap" : tile_layer_c2cb515a6d1be2bd9743f3c17b94cb6b,
-                    "Esri WorldImagery" : tile_layer_0188daa62129b564be210e2c2f61a4b6,
+                    "openstreetmap" : tile_layer_9f134f7b74b9c9ef07cff94f841b4e44,
+                    "OpenStreetMap" : tile_layer_04d2fd55143e940870c20d63f2016bfb,
+                    "Esri WorldImagery" : tile_layer_f260ef6a5a26ce1d91d526cff18cdbc1,
                 },
                 overlays :  {
                 },
             };
-            let layer_control_959103816c5de1444a5677cf88397e0c = L.control.layers(
-                layer_control_959103816c5de1444a5677cf88397e0c_layers.base_layers,
-                layer_control_959103816c5de1444a5677cf88397e0c_layers.overlays,
+            let layer_control_d4f2d0b1e0dd3ff1e8e355369ea70e18 = L.control.layers(
+                layer_control_d4f2d0b1e0dd3ff1e8e355369ea70e18_layers.base_layers,
+                layer_control_d4f2d0b1e0dd3ff1e8e355369ea70e18_layers.overlays,
                 {
   "position": "topright",
   "collapsed": true,
   "autoZIndex": true,
 }
-            ).addTo(map_63386a5fa8a91f13f79911321fa84aed);
+            ).addTo(map_7fad562e1491136cd50fceb0c6581cb7);
 
         
 &lt;/script&gt;
