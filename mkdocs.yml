@@ -77,8 +77,8 @@ nav:
     - Changelog: changelog.md
     - Report Issues: https://github.com/Caseyshea96/geobay/issues
     - Examples:
-        - examples/intro.ipynb
+        - examples/Lab7_Methods_Sample.ipynb
+        - examples/SplitMap_demo.ipynb
     - API Reference:
         - geobay module: geobay.md
         - Foliumap module: foliumap.md
-        - common module: common.md
