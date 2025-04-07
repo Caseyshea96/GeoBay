@@ -1112,6 +1112,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Requirement already satisfied: geobay in c:\users\shea9\documents\github\geo\lib\site-packages (0.0.29)
+Collecting geobay
+  Downloading geobay-0.0.31-py2.py3-none-any.whl.metadata (1.4 kB)
 Requirement already satisfied: numpy in c:\users\shea9\documents\github\geo\lib\site-packages (from geobay) (2.2.4)
 Requirement already satisfied: ipyleaflet&gt;=0.17.0 in c:\users\shea9\documents\github\geo\lib\site-packages (from geobay) (0.19.2)
 Requirement already satisfied: geopandas&gt;=0.10.0 in c:\users\shea9\documents\github\geo\lib\site-packages (from geobay) (1.0.1)
@@ -1151,6 +1153,13 @@ Requirement already satisfied: wcwidth in c:\users\shea9\documents\github\geo\li
 Requirement already satisfied: executing&gt;=1.2.0 in c:\users\shea9\documents\github\geo\lib\site-packages (from stack_data-&gt;ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7.6.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (2.2.0)
 Requirement already satisfied: asttokens&gt;=2.1.0 in c:\users\shea9\documents\github\geo\lib\site-packages (from stack_data-&gt;ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7.6.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (3.0.0)
 Requirement already satisfied: pure-eval in c:\users\shea9\documents\github\geo\lib\site-packages (from stack_data-&gt;ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7.6.0-&gt;ipyleaflet&gt;=0.17.0-&gt;geobay) (0.2.3)
+Downloading geobay-0.0.31-py2.py3-none-any.whl (6.9 kB)
+Installing collected packages: geobay
+  Attempting uninstall: geobay
+    Found existing installation: GeoBay 0.0.29
+    Uninstalling GeoBay-0.0.29:
+      Successfully uninstalled GeoBay-0.0.29
+Successfully installed geobay-0.0.31
 Note: you may need to restart the kernel to use updated packages.
 </pre>
 </div>
@@ -1244,7 +1253,7 @@ my_map.show_map()
             &lt;meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" /&gt;
             &lt;style&gt;
-                #map_61fb91099f374567bc6c62714a2458fc {
+                #map_2850047e93c1716fa2a1f361346c07e4 {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -1259,14 +1268,14 @@ my_map.show_map()
 &lt;body&gt;
     
     
-            &lt;div class="folium-map" id="map_61fb91099f374567bc6c62714a2458fc" &gt;&lt;/div&gt;
+            &lt;div class="folium-map" id="map_2850047e93c1716fa2a1f361346c07e4" &gt;&lt;/div&gt;
         
 &lt;/body&gt;
 &lt;script&gt;
     
     
-            var map_61fb91099f374567bc6c62714a2458fc = L.map(
-                "map_61fb91099f374567bc6c62714a2458fc",
+            var map_2850047e93c1716fa2a1f361346c07e4 = L.map(
+                "map_2850047e93c1716fa2a1f361346c07e4",
                 {
                     center: [38.5, -98.0],
                     crs: L.CRS.EPSG3857,
@@ -1283,7 +1292,7 @@ my_map.show_map()
 
         
     
-            var tile_layer_b574bbddeb62ee8718c2f6fb8ebca43f = L.tileLayer(
+            var tile_layer_53ee69877528ca7c1d94c5e7aae895e1 = L.tileLayer(
                 "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
                 {
   "minZoom": 0,
@@ -1300,10 +1309,10 @@ my_map.show_map()
             );
         
     
-            tile_layer_b574bbddeb62ee8718c2f6fb8ebca43f.addTo(map_61fb91099f374567bc6c62714a2458fc);
+            tile_layer_53ee69877528ca7c1d94c5e7aae895e1.addTo(map_2850047e93c1716fa2a1f361346c07e4);
         
     
-            var tile_layer_b92bb73118ba3e229da80fa8a92ca6b5 = L.tileLayer(
+            var tile_layer_1d97acd63e2f8e9def87636377b75061 = L.tileLayer(
                 "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
                 {
   "minZoom": 0,
@@ -1320,10 +1329,10 @@ my_map.show_map()
             );
         
     
-            tile_layer_b92bb73118ba3e229da80fa8a92ca6b5.addTo(map_61fb91099f374567bc6c62714a2458fc);
+            tile_layer_1d97acd63e2f8e9def87636377b75061.addTo(map_2850047e93c1716fa2a1f361346c07e4);
         
     
-            var tile_layer_f4fc2ddaa5eff238d897a47b39def85d = L.tileLayer(
+            var tile_layer_f80bde0f3c7139f50e11709684cea8ba = L.tileLayer(
                 "http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
                 {
   "minZoom": 0,
@@ -1340,32 +1349,32 @@ my_map.show_map()
             );
         
     
-            tile_layer_f4fc2ddaa5eff238d897a47b39def85d.addTo(map_61fb91099f374567bc6c62714a2458fc);
+            tile_layer_f80bde0f3c7139f50e11709684cea8ba.addTo(map_2850047e93c1716fa2a1f361346c07e4);
         
     
-            var side_by_side_layers_f079f2da8e68f75120214801e6c67fba = L.control.sideBySide(
-                tile_layer_b92bb73118ba3e229da80fa8a92ca6b5, tile_layer_f4fc2ddaa5eff238d897a47b39def85d
-            ).addTo(map_61fb91099f374567bc6c62714a2458fc);
+            var side_by_side_layers_a4fdcf08f36bbc03f63e0bb2cd5f2a8b = L.control.sideBySide(
+                tile_layer_1d97acd63e2f8e9def87636377b75061, tile_layer_f80bde0f3c7139f50e11709684cea8ba
+            ).addTo(map_2850047e93c1716fa2a1f361346c07e4);
         
     
-            var layer_control_1fcd35c9922ecc2f6c45082217d594a2_layers = {
+            var layer_control_21ae386fbb05cda5834a13bb0b4838b7_layers = {
                 base_layers : {
-                    "openstreetmap" : tile_layer_b574bbddeb62ee8718c2f6fb8ebca43f,
-                    "OpenStreetMap" : tile_layer_b92bb73118ba3e229da80fa8a92ca6b5,
-                    "Esri WorldImagery" : tile_layer_f4fc2ddaa5eff238d897a47b39def85d,
+                    "openstreetmap" : tile_layer_53ee69877528ca7c1d94c5e7aae895e1,
+                    "OpenStreetMap" : tile_layer_1d97acd63e2f8e9def87636377b75061,
+                    "Esri WorldImagery" : tile_layer_f80bde0f3c7139f50e11709684cea8ba,
                 },
                 overlays :  {
                 },
             };
-            let layer_control_1fcd35c9922ecc2f6c45082217d594a2 = L.control.layers(
-                layer_control_1fcd35c9922ecc2f6c45082217d594a2_layers.base_layers,
-                layer_control_1fcd35c9922ecc2f6c45082217d594a2_layers.overlays,
+            let layer_control_21ae386fbb05cda5834a13bb0b4838b7 = L.control.layers(
+                layer_control_21ae386fbb05cda5834a13bb0b4838b7_layers.base_layers,
+                layer_control_21ae386fbb05cda5834a13bb0b4838b7_layers.overlays,
                 {
   "position": "topright",
   "collapsed": true,
   "autoZIndex": true,
 }
-            ).addTo(map_61fb91099f374567bc6c62714a2458fc);
+            ).addTo(map_2850047e93c1716fa2a1f361346c07e4);
 
         
 &lt;/script&gt;
