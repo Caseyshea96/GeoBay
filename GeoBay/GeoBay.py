@@ -1,7 +1,8 @@
 """Main module."""
 #ipyleaflet module
-from ipyleaflet import Map as IpyleafletMap, TileLayer, GeoJSON, LayersControl
+from ipyleaflet import Map as IpyleafletMap, TileLayer, GeoJSON, LayersControl, ImageOverlay, VideoOverlay, WMSLayer
 import geopandas as gpd
+from ipywidgets import Color
 
 class CustomIpyleafletMap(IpyleafletMap):
     def __init__(self, center, zoom=12, **kwargs):
@@ -63,6 +64,77 @@ class CustomIpyleafletMap(IpyleafletMap):
         geo_json_data = gdf.__geo_interface__
         geo_json_layer = GeoJSON(data=geo_json_data)
         self.add_layer(geo_json_layer)
+
+ def add_raster(self, url, name=None, colormap=None, opacity=1.0):
+        """
+        Adds a Cloud Optimized GeoTIFF (COG) as a raster layer.
+
+        Parameters:
+        - url (str): URL or path to the COG.
+        - name (str): Optional name for the layer.
+        - colormap (dict or str): Optional colormap.
+        - opacity (float): Opacity of the layer.
+        """
+        tile_layer = TileLayer(
+            url=url,
+            name=name or "Raster Layer",
+            opacity=opacity
+        )
+        self.add_layer(tile_layer)
+
+    def add_image(self, url, bounds, opacity=1.0):
+        """
+        Adds a static image or GIF overlay to the map.
+
+        Parameters:
+        - url (str): URL to the image or GIF.
+        - bounds (tuple): ((south, west), (north, east)) coordinate bounds.
+        - opacity (float): Opacity of the image overlay.
+        """
+        image_layer = ImageOverlay(
+            url=url,
+            bounds=bounds,
+            opacity=opacity
+        )
+        self.add_layer(image_layer)
+
+    def add_video(self, url, bounds, opacity=1.0):
+        """
+        Adds a video overlay to the map.
+
+        Parameters:
+        - url (str or list): URL(s) to the video file(s).
+        - bounds (tuple): ((south, west), (north, east)) coordinate bounds.
+        - opacity (float): Opacity of the video overlay.
+        """
+        video_layer = VideoOverlay(
+            url=url,
+            bounds=bounds,
+            opacity=opacity
+        )
+        self.add_layer(video_layer)
+
+    def add_wms_layer(self, url, layers, name=None, format='image/png', transparent=True, **extra_params):
+        """
+        Adds a WMS (Web Map Service) layer to the map.
+
+        Parameters:
+        - url (str): Base WMS endpoint.
+        - layers (str): Comma-separated layer names.
+        - name (str): Optional display name.
+        - format (str): Image format, default is 'image/png'.
+        - transparent (bool): Whether the layer is transparent.
+        - extra_params: Additional WMS parameters.
+        """
+        wms_layer = WMSLayer(
+            url=url,
+            layers=layers,
+            name=name or "WMS Layer",
+            format=format,
+            transparent=transparent,
+            **extra_params
+        )
+        self.add_layer(wms_layer)
 
     def show_map(self):
         """
