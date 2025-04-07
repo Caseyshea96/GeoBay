@@ -15,6 +15,10 @@
         <link rel="canonical" href="https://caseyshea96.github.io/GeoBay/examples/SplitMap_demo/">
       
       
+        <link rel="prev" href="../Lab7_Methods_Sample/">
+      
+      
+        <link rel="next" href="../../geobay/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -406,18 +410,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
         
           
           <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
@@ -433,7 +439,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             Examples
@@ -447,17 +453,48 @@
   
   
     <li class="md-nav__item">
-      <a href="../intro/" class="md-nav__link">
+      <a href="../Lab7_Methods_Sample/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Intro
+    Lab7 Methods Sample
     
   </span>
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    SplitMap demo
+    
+  </span>
+  
+
+      </a>
+      
     </li>
   
 
@@ -544,29 +581,6 @@
   
   <span class="md-ellipsis">
     Foliumap module
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../common/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    common module
     
   </span>
   
@@ -1230,7 +1244,7 @@ my_map.show_map()
             &lt;meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" /&gt;
             &lt;style&gt;
-                #map_b5662a763e159e9ccec82111ee959aa2 {
+                #map_d64d6ff8f92464c6af3993a1a1b981bd {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -1245,14 +1259,14 @@ my_map.show_map()
 &lt;body&gt;
     
     
-            &lt;div class="folium-map" id="map_b5662a763e159e9ccec82111ee959aa2" &gt;&lt;/div&gt;
+            &lt;div class="folium-map" id="map_d64d6ff8f92464c6af3993a1a1b981bd" &gt;&lt;/div&gt;
         
 &lt;/body&gt;
 &lt;script&gt;
     
     
-            var map_b5662a763e159e9ccec82111ee959aa2 = L.map(
-                "map_b5662a763e159e9ccec82111ee959aa2",
+            var map_d64d6ff8f92464c6af3993a1a1b981bd = L.map(
+                "map_d64d6ff8f92464c6af3993a1a1b981bd",
                 {
                     center: [38.5, -98.0],
                     crs: L.CRS.EPSG3857,
@@ -1269,7 +1283,7 @@ my_map.show_map()
 
         
     
-            var tile_layer_ffeaab2927b3654ab8e0d4d3818f166b = L.tileLayer(
+            var tile_layer_8695fd05d189f628417e6ceb9d62e930 = L.tileLayer(
                 "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
                 {
   "minZoom": 0,
@@ -1286,10 +1300,10 @@ my_map.show_map()
             );
         
     
-            tile_layer_ffeaab2927b3654ab8e0d4d3818f166b.addTo(map_b5662a763e159e9ccec82111ee959aa2);
+            tile_layer_8695fd05d189f628417e6ceb9d62e930.addTo(map_d64d6ff8f92464c6af3993a1a1b981bd);
         
     
-            var tile_layer_cd06b2507c4b7be34d1bd7daeb63fea7 = L.tileLayer(
+            var tile_layer_d606db9f90cf241b23e1105cee60f68d = L.tileLayer(
                 "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
                 {
   "minZoom": 0,
@@ -1306,10 +1320,10 @@ my_map.show_map()
             );
         
     
-            tile_layer_cd06b2507c4b7be34d1bd7daeb63fea7.addTo(map_b5662a763e159e9ccec82111ee959aa2);
+            tile_layer_d606db9f90cf241b23e1105cee60f68d.addTo(map_d64d6ff8f92464c6af3993a1a1b981bd);
         
     
-            var tile_layer_fb81e55baf7d066b144c19ec8a20e9d9 = L.tileLayer(
+            var tile_layer_7c5bd1f6111f156bda62695d4c248064 = L.tileLayer(
                 "http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
                 {
   "minZoom": 0,
@@ -1326,32 +1340,32 @@ my_map.show_map()
             );
         
     
-            tile_layer_fb81e55baf7d066b144c19ec8a20e9d9.addTo(map_b5662a763e159e9ccec82111ee959aa2);
+            tile_layer_7c5bd1f6111f156bda62695d4c248064.addTo(map_d64d6ff8f92464c6af3993a1a1b981bd);
         
     
-            var side_by_side_layers_a7f81606d0c94be427a27b38bcb23ebc = L.control.sideBySide(
-                tile_layer_cd06b2507c4b7be34d1bd7daeb63fea7, tile_layer_fb81e55baf7d066b144c19ec8a20e9d9
-            ).addTo(map_b5662a763e159e9ccec82111ee959aa2);
+            var side_by_side_layers_c602a1f649d60b38279699fe272745bb = L.control.sideBySide(
+                tile_layer_d606db9f90cf241b23e1105cee60f68d, tile_layer_7c5bd1f6111f156bda62695d4c248064
+            ).addTo(map_d64d6ff8f92464c6af3993a1a1b981bd);
         
     
-            var layer_control_1d31278cf77921aebf7ffc5595fff0b5_layers = {
+            var layer_control_1972bc7a0a7ee6c849d93ae6a218a78d_layers = {
                 base_layers : {
-                    "openstreetmap" : tile_layer_ffeaab2927b3654ab8e0d4d3818f166b,
-                    "OpenStreetMap" : tile_layer_cd06b2507c4b7be34d1bd7daeb63fea7,
-                    "Esri WorldImagery" : tile_layer_fb81e55baf7d066b144c19ec8a20e9d9,
+                    "openstreetmap" : tile_layer_8695fd05d189f628417e6ceb9d62e930,
+                    "OpenStreetMap" : tile_layer_d606db9f90cf241b23e1105cee60f68d,
+                    "Esri WorldImagery" : tile_layer_7c5bd1f6111f156bda62695d4c248064,
                 },
                 overlays :  {
                 },
             };
-            let layer_control_1d31278cf77921aebf7ffc5595fff0b5 = L.control.layers(
-                layer_control_1d31278cf77921aebf7ffc5595fff0b5_layers.base_layers,
-                layer_control_1d31278cf77921aebf7ffc5595fff0b5_layers.overlays,
+            let layer_control_1972bc7a0a7ee6c849d93ae6a218a78d = L.control.layers(
+                layer_control_1972bc7a0a7ee6c849d93ae6a218a78d_layers.base_layers,
+                layer_control_1972bc7a0a7ee6c849d93ae6a218a78d_layers.overlays,
                 {
   "position": "topright",
   "collapsed": true,
   "autoZIndex": true,
 }
-            ).addTo(map_b5662a763e159e9ccec82111ee959aa2);
+            ).addTo(map_d64d6ff8f92464c6af3993a1a1b981bd);
 
         
 &lt;/script&gt;
@@ -1416,7 +1430,7 @@ my_map.show_map()
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    2025-04-04
+    2025-04-07
   </span>
 
     
