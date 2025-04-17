@@ -141,18 +141,18 @@ class CustomIpyleafletMap(IpyleafletMap):
         )
         self.add_layer(wms_layer)
 
-        def add_basemap_dropdown(self):
-            """
-            Adds a dropdown widget to select and update the basemap dynamically.
+    def add_basemap_dropdown(self):
+        """
+        Adds a dropdown widget to select and update the basemap dynamically.
 
-            Returns:
-            - None
-            """
-            basemap_options = ["OpenStreetMap", "OpenTopoMap", "Esri.WorldImagery", "CartoDB.DarkMatter"]
-            dropdown = widgets.Dropdown(
-                options=basemap_options,
-                value="OpenStreetMap",
-                description="Basemap:"
+        Returns:
+        - None
+        """
+        basemap_options = ["OpenStreetMap", "OpenTopoMap", "Esri.WorldImagery", "CartoDB.DarkMatter"]
+        dropdown = widgets.Dropdown(
+            options=basemap_options,
+            value="OpenStreetMap",
+            description="Basemap:"
         )
 
     def show_map(self):
