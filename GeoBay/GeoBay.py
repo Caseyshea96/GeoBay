@@ -1,10 +1,9 @@
 # Main module.
 
-from ipyleaflet import Map as IpyleafletMap, TileLayer, GeoJSON, LayersControl, ImageOverlay, VideoOverlay, WMSLayer
+from ipyleaflet import Map as IpyleafletMap, TileLayer, GeoJSON, LayersControl, ImageOverlay, VideoOverlay, WMSLayer, WidgetControl
 import geopandas as gpd
 import ipywidgets as widgets
 from IPython.display import display
-from ipyleaflet import WidgetControl
 
 class CustomIpyleafletMap(IpyleafletMap):
     """
