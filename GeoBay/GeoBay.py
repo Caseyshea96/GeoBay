@@ -117,7 +117,7 @@ class CustomIpyleafletMap(IpyleafletMap):
 
         dropdown.observe(on_dropdown_change, names="value")
 
-        control = WidgetControl(widget=widget, position=position, **kwargs)
+        control = WidgetControl(widget=hbox, position=position)
         self.add(control)
 
     def add_widget(self, widget, position="topright", **kwargs):
