@@ -4,6 +4,7 @@ from ipyleaflet import Map as IpyleafletMap, TileLayer, GeoJSON, LayersControl, 
 import geopandas as gpd
 import ipywidgets as widgets
 from IPython.display import display
+from ipyleaflet import WidgetControl
 
 class CustomIpyleafletMap(IpyleafletMap):
     """
@@ -117,7 +118,7 @@ class CustomIpyleafletMap(IpyleafletMap):
 
         dropdown.observe(on_dropdown_change, names="value")
 
-        control = ipyleaflet.WidgetControl(widget=hbox, position=position)
+        control = WidgetControl(widget=widget, position=position, **kwargs)
         self.add(control)
 
     def add_widget(self, widget, position="topright", **kwargs):
