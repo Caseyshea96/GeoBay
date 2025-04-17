@@ -49,19 +49,19 @@ class CustomIpyleafletMap(IpyleafletMap):
         Adds a graphical user interface (GUI) for selecting basemaps.
 
         Args:
-            options (list, optional): A list of basemap options to display in the dropdown.
-                Defaults to ["OpenStreetMap.Mapnik", "OpenTopoMap", "Esri.WorldImagery", "CartoDB.DarkMatter"].
-            position (str, optional): The position of the widget on the map. Defaults to "topright".
+            -options (list, optional): A list of basemap options to display in the dropdown.
+               ["OpenStreetMap.Mapnik", "OpenTopoMap", "Esri.WorldImagery", "CartoDB.DarkMatter"].
+            -position (str, optional): The position of the widget on the map. Defaults to "topright".
 
         Behavior:
             - A toggle button is used to show or hide the dropdown and close button.
             - The dropdown allows users to select a basemap from the provided options.
-            - The close button removes the widget from the map.
+            - The close button hides the widget from the map.
 
         Event Handlers:
             - `on_toggle_change`: Toggles the visibility of the dropdown and close button.
-            - `on_button_click`: Closes and removes the widget from the map.
-            - `on_dropdown_change`: Updates the map's basemap when a new option is selected.
+            - `on_button_click`: Closes the widget when button is clicked
+            - `on_dropdown_change`: Updates the basemap when a new option is selected.
         """
         if options is None:
             options = [
