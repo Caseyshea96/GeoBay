@@ -2,6 +2,8 @@
 
 from ipyleaflet import Map as IpyleafletMap, TileLayer, GeoJSON, LayersControl, ImageOverlay, VideoOverlay, WMSLayer
 import geopandas as gpd
+import ipywidgets as widgets
+from IPython.display import display
 
 class CustomIpyleafletMap(IpyleafletMap):
     """
