@@ -55,7 +55,7 @@ class CustomIpyleafletMap(IpyleafletMap):
 
         Behavior:
             - A toggle button is used to show or hide the dropdown and close button.
-            - The dropdown allows users to select a basemap from the provided options.
+            - The dropdown allows users to select a bsemap from the provided options.
             - The close button hides the widget from the map.
 
         Event Handlers:

@@ -40,10 +40,10 @@ plugins:
             options:
               members: true
               show_signature: true
-    - git-revision-date
-    #- git-revision-date-localized:
-      #  enable_creation_date: true
-     #   type: timeago
+    #- git-revision-date
+    - git-revision-date-localized:
+        enable_creation_date: true
+        type: timeago
     - mkdocs-jupyter:
         include_source: true
         ignore_h1_titles: true
@@ -78,6 +78,7 @@ nav:
     - Report Issues: https://github.com/Caseyshea96/geobay/issues
     - Examples:
         - examples/Lab7_Methods_Sample.ipynb
+        - examples/Lab8_methods.ipynb
         - examples/SplitMap_demo.ipynb
     - API Reference:
         - geobay module: geobay.md
