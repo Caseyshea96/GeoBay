@@ -44,7 +44,7 @@ class CustomIpyleafletMap(IpyleafletMap):
         basemap = TileLayer(url=basemap_urls[basemap_name])
         self.add_layer(basemap)
         
-        def add_basemap_gui(self, options=None, position="topright"):
+    def add_basemap_gui(self, options=None, position="topright"):
         """
         Adds a graphical user interface (GUI) for selecting basemaps.
 
