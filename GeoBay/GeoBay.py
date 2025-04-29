@@ -405,3 +405,13 @@ class CustomIpyleafletMap(IpyleafletMap):
 
         self.add_layer(GeoJSON(data=geo_json, style=style, name="Roads"))
     
+    def format_legend_html(legend_dict, title="ESA WorldCover Legend"):
+        """
+        Converts a legend dictionary (e.g., from leafmap.builtin_legends) into HTML for ipyleaflet.
+        """
+        html = f"<div style='padding:10px;background:white;font-size:12px'><b>{title}</b><br>"
+        for label, color in legend_dict.items():
+            html += f"<span style='color:#{color}'>■</span> {label}<br>"
+        html += "</div>"
+        return html
+
