@@ -357,3 +357,34 @@ class CustomIpyleafletMap(IpyleafletMap):
         split_control = SplitMapControl(left_layer=pre_layer, right_layer=post_layer)
         self.add_control(split_control)
 
+    def add_building_polygons(self, url):
+        """
+        Add building polygons with red outline and no fill.
+        """
+        gdf = gpd.read_file(url)
+        geo_json = gdf.__geo_interface__
+
+        style = {
+            "color": "red",
+            "weight": 1,
+            "fill": False,
+            "fillOpacity": 0.0
+        }
+
+        self.add_layer(GeoJSON(data=geo_json, style=style, name="Buildings"))
+        
+    def add_roads(self, url):
+        """
+        Add road polylines with red color and width 2.
+        """
+    gdf = gpd.read_file(url)
+    geo_json = gdf.__geo_interface__
+
+    style = {
+        "color": "red",
+        "weight": 2,
+        "opacity": 1.0
+    }
+
+    self.add_layer(GeoJSON(data=geo_json, style=style, name="Roads"))
+    
