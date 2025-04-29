@@ -1,6 +1,6 @@
 # Main module.
 
-from ipyleaflet import Map as IpyleafletMap, TileLayer, GeoJSON, LayersControl, ImageOverlay, SearchControl, VideoOverlay, WMSLayer, WidgetControl, CircleMarker, MarkerCluster, Polyline, SplitMapControl
+from ipyleaflet import Map as IpyleafletMap, TileLayer, GeoJSON, LayersControl, ImageOverlay, SearchControl, VideoOverlay, WMSLayer, WidgetControl, CircleMarker, MarkerCluster, Polyline, SplitMapControl, Marker
 import geopandas as gpd
 import ipywidgets as widgets
 from IPython.display import display
@@ -239,23 +239,19 @@ class CustomIpyleafletMap(IpyleafletMap):
             ipyleaflet.Map: The configured map.
         """
         return self
-    
-    def add_search_control(self, position="topleft", zoom=10, provider='nominatim'):
-        """
-        Add a search bar to the map using OpenStreetMap's Nominatim geocoder.
 
-        Args:
-            position (str): Position of the search control (default is "topleft").
-            zoom (int): Zoom level after finding a location.
-            provider (str): The search provider (default is 'nominatim').
+    def add_search_control(self, position="topleft", zoom=10):
+        """
+        Add a search bar to the map using Nominatim geocoder.
         """
         search = SearchControl(
             position=position,
-            url=f'https://nominatim.openstreetmap.org/search?format=json&q={{s}}',
+            url='https://nominatim.openstreetmap.org/search?format=json&q={s}',
             zoom=zoom,
-            marker=True
+            marker=Marker()  # ✅ Provide a valid Marker object
         )
         self.add_control(search)
+
     
     def add_esa_worldcover(self, position="bottomright"):
         """
@@ -264,9 +260,11 @@ class CustomIpyleafletMap(IpyleafletMap):
         Args:
             position (str): Position of the legend on the map. Defaults to "bottomright".
         """
-        from ipyleaflet import WMSLayer, WidgetControl
         import ipywidgets as widgets
+        from ipyleaflet import WMSLayer, WidgetControl
+        import leafmap
 
+        # Add ESA WorldCover WMS layer
         esa_layer = WMSLayer(
             url="https://services.terrascope.be/wms/v2?",
             layers="WORLDCOVER_2021_MAP",
@@ -276,12 +274,12 @@ class CustomIpyleafletMap(IpyleafletMap):
         )
         self.add_layer(esa_layer)
 
-        legend_html = leafmap.colormaps._generate_legend_html(leafmap.colormaps.ESA_WorldCover)
-
+        # Get ESA legend from leafmap's built-in legends
+        legend_html = leafmap.legend_builtin['ESA_WorldCover']
         legend_widget = widgets.HTML(value=legend_html)
         legend_control = WidgetControl(widget=legend_widget, position=position)
         self.add_control(legend_control)
-    
+
     def add_circle_markers_from_xy(self, gdf, radius=5, color="red", fill_color="yellow", fill_opacity=0.8):
         """
         Add circle markers from a GeoDataFrame with lat/lon columns using MarkerCluster.
