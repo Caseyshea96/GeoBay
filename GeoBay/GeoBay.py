@@ -275,7 +275,8 @@ class CustomIpyleafletMap(IpyleafletMap):
         self.add_layer(esa_layer)
 
         # Get ESA legend from leafmap's built-in legends
-        legend_html = leafmap.builtin_legends['ESA_WorldCover']
+        legend_dict = leafmap.builtin_legends['ESA_WorldCover']
+        legend_html = format_legend_html(legend_dict)
         legend_widget = widgets.HTML(value=legend_html)
         legend_control = WidgetControl(widget=legend_widget, position=position)
         self.add_control(legend_control)
@@ -350,7 +351,7 @@ class CustomIpyleafletMap(IpyleafletMap):
         )
         self.add_layer(layer)
 
-    def add_split_rasters_leafmap(self, pre_url, post_url, pre_name="Pre-event", post_name="Post-event"):
+    def add_split_rasters_leafmap(self, pre_url, post_url, pre_name="Pre-event", post_name="Post-event", overwrite=True):
         """
         Use leafmap to split and visualize two remote raster .tif files (e.g., before/after).
 
