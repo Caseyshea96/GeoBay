@@ -1,9 +1,10 @@
 # Main module.
 
-from ipyleaflet import Map as IpyleafletMap, TileLayer, GeoJSON, LayersControl, ImageOverlay, VideoOverlay, WMSLayer, WidgetControl
+from ipyleaflet import Map as IpyleafletMap, TileLayer, GeoJSON, LayersControl, ImageOverlay, SearchControl, VideoOverlay, WMSLayer, WidgetControl, CircleMarker, MarkerCluster, Polyline, SplitMapControl
 import geopandas as gpd
 import ipywidgets as widgets
 from IPython.display import display
+import leafmap
 
 class CustomIpyleafletMap(IpyleafletMap):
     """
@@ -238,3 +239,123 @@ class CustomIpyleafletMap(IpyleafletMap):
             ipyleaflet.Map: The configured map.
         """
         return self
+    
+    def add_search_control(self, position="topleft", zoom=10, provider='nominatim'):
+        """
+        Add a search bar to the map using OpenStreetMap's Nominatim geocoder.
+
+        Args:
+            position (str): Position of the search control (default is "topleft").
+            zoom (int): Zoom level after finding a location.
+            provider (str): The search provider (default is 'nominatim').
+        """
+        search = SearchControl(
+            position=position,
+            url=f'https://nominatim.openstreetmap.org/search?format=json&q={{s}}',
+            zoom=zoom,
+            marker=True
+        )
+        self.add_control(search)
+    
+    def add_esa_worldcover(self, position="bottomright"):
+        """
+        Adds the ESA World Cover 2021 WMS layer and its legend to the map.
+
+        Args:
+            position (str): Position of the legend on the map. Defaults to "bottomright".
+        """
+    from ipyleaflet import WMSLayer, WidgetControl
+    import ipywidgets as widgets
+
+    esa_layer = WMSLayer(
+        url="https://services.terrascope.be/wms/v2?",
+        layers="WORLDCOVER_2021_MAP",
+        name="ESA WorldCover 2021",
+        transparent=True,
+        format="image/png"
+    )
+    self.add_layer(esa_layer)
+
+    legend_html = leafmap.colormaps._generate_legend_html(leafmap.colormaps.ESA_WorldCover)
+
+    legend_widget = widgets.HTML(value=legend_html)
+    legend_control = WidgetControl(widget=legend_widget, position=position)
+    self.add_control(legend_control)
+    
+    def add_circle_markers_from_xy(self, gdf, radius=5, color="red", fill_color="yellow", fill_opacity=0.8):
+        """
+        Add circle markers from a GeoDataFrame with lat/lon columns using MarkerCluster.
+
+        Args:
+            gdf (GeoDataFrame): Must contain 'latitude' and 'longitude' columns.
+            radius (int): Radius of each marker.
+            color (str): Outline color.
+            fill_color (str): Fill color.
+            fill_opacity (float): Fill opacity.
+        """
+    if 'latitude' not in gdf.columns or 'longitude' not in gdf.columns:
+        raise ValueError("GeoDataFrame must contain 'latitude' and 'longitude' columns")
+
+    markers = []
+    for _, row in gdf.iterrows():
+        marker = CircleMarker(
+            location=(row['latitude'], row['longitude']),
+            radius=radius,
+            color=color,
+            fill_color=fill_color,
+            fill_opacity=fill_opacity,
+            stroke=True
+        )
+        markers.append(marker)
+
+    cluster = MarkerCluster(markers=markers)
+    self.add_layer(cluster)
+
+    def add_choropleth(self, url, column, colormap="YlOrRd"):
+        """
+        Simulate a choropleth using GeoJSON layer and dynamic styling.
+
+        Args:
+            url (str): GeoJSON file URL.
+            column (str): Attribute column to color by.
+            colormap (str): Color ramp name (from branca.colormap).
+        """
+    import branca.colormap as cm
+    import json
+
+    gdf = gpd.read_file(url)
+    gdf = gdf.to_crs("EPSG:4326")
+    gdf["id"] = gdf.index.astype(str)
+
+    values = gdf[column]
+    cmap = cm.linear.__getattribute__(colormap).scale(values.min(), values.max())
+
+    def style_dict(feature):
+        value = gdf.loc[int(feature['id']), column]
+        return {
+            'fillColor': cmap(value),
+            'color': 'black',
+            'weight': 0.5,
+            'fillOpacity': 0.7
+        }
+
+    geo_json = json.loads(gdf.to_json())
+    layer = GeoJSON(data=geo_json, style=style_dict, name="Choropleth")
+    self.add_layer(layer)
+
+    def add_split_map(self, pre_url, post_url, name_pre="Pre-event", name_post="Post-event"):
+        """
+        Add a split map control to compare pre- and post-event imagery.
+
+        Args:
+            pre_url (str): URL template for pre-event tile imagery.
+            post_url (str): URL template for post-event tile imagery.
+            name_pre (str): Optional label for pre-event imagery.
+            name_post (str): Optional label for post-event imagery.
+        """
+    pre_layer = TileLayer(url=pre_url, name=name_pre)
+    post_layer = TileLayer(url=post_url, name=name_post)
+
+    split_control = SplitMapControl(left_layer=pre_layer, right_layer=post_layer)
+    self.add_control(split_control)
+
