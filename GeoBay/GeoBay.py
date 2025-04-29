@@ -328,14 +328,14 @@ class CustomIpyleafletMap(IpyleafletMap):
         values = gdf[column]
         cmap = cm.linear.__getattribute__(colormap).scale(values.min(), values.max())
 
-    def style_dict(feature):
-        value = gdf.loc[int(feature['id']), column]
-        return {
-            'fillColor': cmap(value),
-            'color': 'black',
-            'weight': 0.5,
-            'fillOpacity': 0.7
-        }
+        def style_dict(feature):
+            value = gdf.loc[int(feature['id']), column]
+            return {
+                'fillColor': cmap(value),
+                'color': 'black',
+                'weight': 0.5,
+                'fillOpacity': 0.7
+            }
 
         geo_json = json.loads(gdf.to_json())
         layer = GeoJSON(data=geo_json, style=style_dict, name="Choropleth")
@@ -377,14 +377,14 @@ class CustomIpyleafletMap(IpyleafletMap):
         """
         Add road polylines with red color and width 2.
         """
-    gdf = gpd.read_file(url)
-    geo_json = gdf.__geo_interface__
+        gdf = gpd.read_file(url)
+        geo_json = gdf.__geo_interface__
 
-    style = {
-        "color": "red",
-        "weight": 2,
-        "opacity": 1.0
-    }
+        style = {
+            "color": "red",
+            "weight": 2,
+            "opacity": 1.0
+        }
 
-    self.add_layer(GeoJSON(data=geo_json, style=style, name="Roads"))
+        self.add_layer(GeoJSON(data=geo_json, style=style, name="Roads"))
     
