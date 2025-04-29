@@ -275,7 +275,7 @@ class CustomIpyleafletMap(IpyleafletMap):
         self.add_layer(esa_layer)
 
         # Get ESA legend from leafmap's built-in legends
-        legend_html = leafmap.legend_builtin['ESA_WorldCover']
+        legend_html = leafmap.builtin_legends['ESA_WorldCover']
         legend_widget = widgets.HTML(value=legend_html)
         legend_control = WidgetControl(widget=legend_widget, position=position)
         self.add_control(legend_control)
@@ -338,24 +338,40 @@ class CustomIpyleafletMap(IpyleafletMap):
             }
 
         geo_json = json.loads(gdf.to_json())
-        layer = GeoJSON(data=geo_json, style=style_dict, name="Choropleth")
+        layer = GeoJSON(
+            data=geo_json,
+            style={
+                'color': 'black',
+                'fillColor': 'blue',
+                'weight': 0.5,
+                'fillOpacity': 0.7
+            },
+            name="Choropleth"
+        )
         self.add_layer(layer)
 
-    def add_split_map(self, pre_url, post_url, name_pre="Pre-event", name_post="Post-event"):
+    def add_split_rasters_leafmap(self, pre_url, post_url, pre_name="Pre-event", post_name="Post-event"):
         """
-        Add a split map control to compare pre- and post-event imagery.
+        Use leafmap to split and visualize two remote raster .tif files (e.g., before/after).
 
         Args:
-            pre_url (str): URL template for pre-event tile imagery.
-            post_url (str): URL template for post-event tile imagery.
-            name_pre (str): Optional label for pre-event imagery.
-            name_post (str): Optional label for post-event imagery.
-        """
-        pre_layer = TileLayer(url=pre_url, name=name_pre)
-        post_layer = TileLayer(url=post_url, name=name_post)
+            pre_url (str): URL to pre-event .tif file.
+            post_url (str): URL to post-event .tif file.
+            pre_name (str): Label for left layer.
+            post_name (str): Label for right layer.
 
-        split_control = SplitMapControl(left_layer=pre_layer, right_layer=post_layer)
-        self.add_control(split_control)
+        Returns:
+            leafmap.Map: A split map viewer using local .tif rasters.
+        """
+        import leafmap
+
+        pre_tif = leafmap.download_file(pre_url, "pre_event.tif")
+        post_tif = leafmap.download_file(post_url, "post_event.tif")
+
+        m = leafmap.Map(center=self.center, zoom=self.zoom)
+        m.split_map(left_layer=pre_tif, right_layer=post_tif, left_label=pre_name, right_label=post_name)
+        return m
+
 
     def add_building_polygons(self, url):
         """
