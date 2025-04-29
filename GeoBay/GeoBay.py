@@ -254,17 +254,10 @@ class CustomIpyleafletMap(IpyleafletMap):
 
     
     def add_esa_worldcover(self, position="bottomright"):
-        """
-        Adds the ESA World Cover 2021 WMS layer and its legend to the map.
-
-        Args:
-            position (str): Position of the legend on the map. Defaults to "bottomright".
-        """
         import ipywidgets as widgets
         from ipyleaflet import WMSLayer, WidgetControl
         import leafmap
 
-        # Add ESA WorldCover WMS layer
         esa_layer = WMSLayer(
             url="https://services.terrascope.be/wms/v2?",
             layers="WORLDCOVER_2021_MAP",
@@ -274,8 +267,15 @@ class CustomIpyleafletMap(IpyleafletMap):
         )
         self.add_layer(esa_layer)
 
-        # Get ESA legend from leafmap's built-in legends
         legend_dict = leafmap.builtin_legends['ESA_WorldCover']
+
+        def format_legend_html(legend_dict, title="ESA WorldCover Legend"):
+            html = f"<div style='padding:10px;background:white;font-size:12px'><b>{title}</b><br>"
+            for label, color in legend_dict.items():
+                html += f"<span style='color:#{color}'>■</span> {label}<br>"
+            html += "</div>"
+            return html
+
         legend_html = format_legend_html(legend_dict)
         legend_widget = widgets.HTML(value=legend_html)
         legend_control = WidgetControl(widget=legend_widget, position=position)
@@ -353,26 +353,27 @@ class CustomIpyleafletMap(IpyleafletMap):
 
     def add_split_rasters_leafmap(self, pre_url, post_url, pre_name="Pre-event", post_name="Post-event", overwrite=True):
         """
-        Use leafmap to split and visualize two remote raster .tif files (e.g., before/after).
-
-        Args:
-            pre_url (str): URL to pre-event .tif file.
-            post_url (str): URL to post-event .tif file.
-            pre_name (str): Label for left layer.
-            post_name (str): Label for right layer.
-
-        Returns:
-            leafmap.Map: A split map viewer using local .tif rasters.
+        Use leafmap to split and visualize two remote raster .tif files.
         """
         import leafmap
+        import rasterio
+        import os
 
-        pre_tif = leafmap.download_file(pre_url, "pre_event.tif")
-        post_tif = leafmap.download_file(post_url, "post_event.tif")
+        def download_and_check(url, path):
+            file = leafmap.download_file(url, path, overwrite=overwrite)  # ✅ Ensure overwrite is passed here
+            try:
+                with rasterio.open(file) as src:
+                    _ = src.meta
+                return file
+            except Exception as e:
+                raise ValueError(f"{path} is not a valid GeoTIFF: {e}")
+
+        pre_tif = download_and_check(pre_url, "pre_event.tif")
+        post_tif = download_and_check(post_url, "post_event.tif")
 
         m = leafmap.Map(center=self.center, zoom=self.zoom)
         m.split_map(left_layer=pre_tif, right_layer=post_tif, left_label=pre_name, right_label=post_name)
         return m
-
 
     def add_building_polygons(self, url):
         """
@@ -405,13 +406,5 @@ class CustomIpyleafletMap(IpyleafletMap):
 
         self.add_layer(GeoJSON(data=geo_json, style=style, name="Roads"))
     
-    def format_legend_html(legend_dict, title="ESA WorldCover Legend"):
-        """
-        Converts a legend dictionary (e.g., from leafmap.builtin_legends) into HTML for ipyleaflet.
-        """
-        html = f"<div style='padding:10px;background:white;font-size:12px'><b>{title}</b><br>"
-        for label, color in legend_dict.items():
-            html += f"<span style='color:#{color}'>■</span> {label}<br>"
-        html += "</div>"
-        return html
+
 
