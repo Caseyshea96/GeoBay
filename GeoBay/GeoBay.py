@@ -264,23 +264,23 @@ class CustomIpyleafletMap(IpyleafletMap):
         Args:
             position (str): Position of the legend on the map. Defaults to "bottomright".
         """
-    from ipyleaflet import WMSLayer, WidgetControl
-    import ipywidgets as widgets
+        from ipyleaflet import WMSLayer, WidgetControl
+        import ipywidgets as widgets
 
-    esa_layer = WMSLayer(
-        url="https://services.terrascope.be/wms/v2?",
-        layers="WORLDCOVER_2021_MAP",
-        name="ESA WorldCover 2021",
-        transparent=True,
-        format="image/png"
-    )
-    self.add_layer(esa_layer)
+        esa_layer = WMSLayer(
+            url="https://services.terrascope.be/wms/v2?",
+            layers="WORLDCOVER_2021_MAP",
+            name="ESA WorldCover 2021",
+            transparent=True,
+            format="image/png"
+        )
+        self.add_layer(esa_layer)
 
-    legend_html = leafmap.colormaps._generate_legend_html(leafmap.colormaps.ESA_WorldCover)
+        legend_html = leafmap.colormaps._generate_legend_html(leafmap.colormaps.ESA_WorldCover)
 
-    legend_widget = widgets.HTML(value=legend_html)
-    legend_control = WidgetControl(widget=legend_widget, position=position)
-    self.add_control(legend_control)
+        legend_widget = widgets.HTML(value=legend_html)
+        legend_control = WidgetControl(widget=legend_widget, position=position)
+        self.add_control(legend_control)
     
     def add_circle_markers_from_xy(self, gdf, radius=5, color="red", fill_color="yellow", fill_opacity=0.8):
         """
@@ -293,23 +293,23 @@ class CustomIpyleafletMap(IpyleafletMap):
             fill_color (str): Fill color.
             fill_opacity (float): Fill opacity.
         """
-    if 'latitude' not in gdf.columns or 'longitude' not in gdf.columns:
-        raise ValueError("GeoDataFrame must contain 'latitude' and 'longitude' columns")
+        if 'latitude' not in gdf.columns or 'longitude' not in gdf.columns:
+            raise ValueError("GeoDataFrame must contain 'latitude' and 'longitude' columns")
 
-    markers = []
-    for _, row in gdf.iterrows():
-        marker = CircleMarker(
-            location=(row['latitude'], row['longitude']),
-            radius=radius,
-            color=color,
-            fill_color=fill_color,
-            fill_opacity=fill_opacity,
-            stroke=True
-        )
-        markers.append(marker)
+        markers = []
+        for _, row in gdf.iterrows():
+            marker = CircleMarker(
+                location=(row['latitude'], row['longitude']),
+                radius=radius,
+                color=color,
+                fill_color=fill_color,
+                fill_opacity=fill_opacity,
+                stroke=True
+            )
+            markers.append(marker)
 
-    cluster = MarkerCluster(markers=markers)
-    self.add_layer(cluster)
+        cluster = MarkerCluster(markers=markers)
+        self.add_layer(cluster)
 
     def add_choropleth(self, url, column, colormap="YlOrRd"):
         """
@@ -320,15 +320,15 @@ class CustomIpyleafletMap(IpyleafletMap):
             column (str): Attribute column to color by.
             colormap (str): Color ramp name (from branca.colormap).
         """
-    import branca.colormap as cm
-    import json
+        import branca.colormap as cm
+        import json
 
-    gdf = gpd.read_file(url)
-    gdf = gdf.to_crs("EPSG:4326")
-    gdf["id"] = gdf.index.astype(str)
+        gdf = gpd.read_file(url)
+        gdf = gdf.to_crs("EPSG:4326")
+        gdf["id"] = gdf.index.astype(str)
 
-    values = gdf[column]
-    cmap = cm.linear.__getattribute__(colormap).scale(values.min(), values.max())
+        values = gdf[column]
+        cmap = cm.linear.__getattribute__(colormap).scale(values.min(), values.max())
 
     def style_dict(feature):
         value = gdf.loc[int(feature['id']), column]
@@ -339,9 +339,9 @@ class CustomIpyleafletMap(IpyleafletMap):
             'fillOpacity': 0.7
         }
 
-    geo_json = json.loads(gdf.to_json())
-    layer = GeoJSON(data=geo_json, style=style_dict, name="Choropleth")
-    self.add_layer(layer)
+        geo_json = json.loads(gdf.to_json())
+        layer = GeoJSON(data=geo_json, style=style_dict, name="Choropleth")
+        self.add_layer(layer)
 
     def add_split_map(self, pre_url, post_url, name_pre="Pre-event", name_post="Post-event"):
         """
@@ -353,9 +353,9 @@ class CustomIpyleafletMap(IpyleafletMap):
             name_pre (str): Optional label for pre-event imagery.
             name_post (str): Optional label for post-event imagery.
         """
-    pre_layer = TileLayer(url=pre_url, name=name_pre)
-    post_layer = TileLayer(url=post_url, name=name_post)
+        pre_layer = TileLayer(url=pre_url, name=name_pre)
+        post_layer = TileLayer(url=post_url, name=name_post)
 
-    split_control = SplitMapControl(left_layer=pre_layer, right_layer=post_layer)
-    self.add_control(split_control)
+        split_control = SplitMapControl(left_layer=pre_layer, right_layer=post_layer)
+        self.add_control(split_control)
 
