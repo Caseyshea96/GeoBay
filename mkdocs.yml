@@ -81,6 +81,7 @@ nav:
         - examples/Lab8_methods.ipynb
         - examples/Lab9_methods.ipynb
         - examples/SplitMap_demo.ipynb
+        - examples/Hydro_demo.ipynb
     - API Reference:
         - geobay module: geobay.md
         - Foliumap module: foliumap.md
