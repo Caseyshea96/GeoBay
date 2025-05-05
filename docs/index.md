@@ -1,10 +1,10 @@
-# Welcome to Geobay
+# Geobay
 
 
 [![image](https://img.shields.io/pypi/v/GeoBay.svg)](https://pypi.python.org/pypi/GeoBay)
 
 
-**python package for geog 510**
+**Hydrology analysis package focused on seamless integration with cloud data**
 
 
 -   Free software: MIT License
@@ -13,4 +13,4 @@
 
 ## Features
 
--   TODO
+-   Create flood maps from Google Earth Engine data by drawing box
