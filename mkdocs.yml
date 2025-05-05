@@ -77,9 +77,6 @@ nav:
     - Changelog: changelog.md
     - Report Issues: https://github.com/Caseyshea96/geobay/issues
     - Examples:
-        - examples/Lab7_methods.ipynb
-        - examples/Lab8_methods.ipynb
-        - examples/Lab9_methods.ipynb
         - examples/SplitMap_demo.ipynb
         - examples/Hydro_demo.ipynb
     - API Reference:
