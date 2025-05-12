@@ -9,7 +9,7 @@ You can contribute in many ways:
 
 ### Report Bugs
 
-Report bugs at <https://github.com/Caseyshea96/geoproject510/issues>.
+Report bugs at <https://github.com/Caseyshea96/geobay/issues>.
 
 If you are reporting a bug, please include:
 
@@ -29,14 +29,14 @@ Look through the GitHub issues for features. Anything tagged with
 
 ### Write Documentation
 
-GeoProject510 could always use more documentation,
-whether as part of the official GeoProject510 docs,
+geobay could always use more documentation,
+whether as part of the official geobay docs,
 in docstrings, or even on the web in blog posts, articles, and such.
 
 ### Submit Feedback
 
 The best way to send feedback is to file an issue at
-<https://github.com/Caseyshea96/geoproject510/issues>.
+<https://github.com/Caseyshea96/geobay/issues>.
 
 If you are proposing a feature:
 
@@ -46,14 +46,14 @@ If you are proposing a feature:
 
 ## Get Started!
 
-Ready to contribute? Here's how to set up geoproject510 for local development.
+Ready to contribute? Here's how to set up geobay for local development.
 
-1.  Fork the geoproject510 repo on GitHub.
+1.  Fork the geobay repo on GitHub.
 
 2.  Clone your fork locally:
 
     ```shell
-    $ git clone git@github.com:your_name_here/geoproject510.git
+    $ git clone git@github.com:your_name_here/geobay.git
     ```
 
 3.  Install your local copy into a virtualenv. Assuming you have
@@ -61,8 +61,8 @@ Ready to contribute? Here's how to set up geoproject510 for local development.
     local development:
 
     ```shell
-    $ mkvirtualenv geoproject510
-    $ cd geoproject510/
+    $ mkvirtualenv geobay
+    $ cd geobay/
     $ python setup.py develop
     ```
 
@@ -78,7 +78,7 @@ Ready to contribute? Here's how to set up geoproject510 for local development.
     and the tests, including testing other Python versions with tox:
 
     ```shell
-    $ flake8 geoproject510 tests
+    $ flake8 geobay tests
     $ python setup.py test or pytest
     $ tox
     ```
@@ -104,5 +104,5 @@ Before you submit a pull request, check that it meets these guidelines:
     Put your new functionality into a function with a docstring, and add
     the feature to the list in README.rst.
 3.  The pull request should work for Python 3.8 and later, and
-    for PyPy. Check <https://github.com/Caseyshea96/geoproject510/pull_requests> and make sure that the tests pass for all
+    for PyPy. Check <https://github.com/Caseyshea96/geobay/pull_requests> and make sure that the tests pass for all
     supported Python versions.

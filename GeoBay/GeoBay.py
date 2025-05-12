@@ -460,8 +460,6 @@ class gb_map(IpyleafletMap):
             if elevation_threshold is not None:
                 flood_mask = hydro.simulate_flood(bbox, elevation_threshold)
 
-            self.add_ee_layer(flood_mask, vis_params={"palette": ["0000FF"]}, name="Simulated Flood")
-
 
             # Optionally chain to watershed mode
             if post_action == "Watershed":
@@ -549,11 +547,11 @@ class gb_map(IpyleafletMap):
         )
 
         threshold_slider = widgets.IntSlider(
-            value=elevation_threshold,
-            min=0,
+            value=30,
+            min=10,
             max=200,
             step=1,
-            description='Threshold (m):',
+            description='Flood Elevation (m):',
             continuous_update=False,
             style={'description_width': 'initial'}
         )
@@ -612,22 +610,38 @@ class gb_map(IpyleafletMap):
                     self.enable_draw_bbox(elevation_threshold=self.threshold_slider.value)
                 except:
                     self.enable_draw_bbox(elevation_threshold=10)
+    
+
 
         
-        # Attach event listeners
+
+        def on_slider_change(change):
+            if mode_selector.value == "Flood":
+                threshold = change["new"]
+                self.enable_draw_bbox(elevation_threshold=threshold)
+                with output:
+                    output.clear_output()
+                    print(f"Flood threshold changed to {threshold}m")
+
+            # Attach event listeners
+            # Attach event listeners
+            # Ensure mode_selector is defined and properly indented
+        
+        threshold_slider.observe(on_slider_change, names="value")
+
         mode_selector.observe(on_mode_change)
         clear_button.on_click(on_clear_clicked)
         reset_button.on_click(on_reset_clicked)
 
-        # Layout: Mode toggle + control buttons
+            # Layout: Mode toggle + control buttons
         ui = widgets.VBox([
             widgets.HBox([mode_selector, clear_button, reset_button]),
             threshold_slider,
             output
         ])
         display(ui)
-        
-        # Automatically load draw tool for default mode
+                
+            # Automatically load draw tool for default mode
         if default_mode == "Flood":
             self.enable_draw_bbox(elevation_threshold=threshold_slider.value)
         elif default_mode == "Watershed":
@@ -640,7 +654,6 @@ class gb_map(IpyleafletMap):
                     post_action="Watershed",
                     accumulation_threshold=accumulation_threshold
                 )
-
 
 
     def clear_layers(self):
