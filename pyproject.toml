@@ -1,6 +1,6 @@
 [project]
 name = "GeoBay"
-version = "0.0.55"
+version = "1.0.0"
 dynamic = [
     "dependencies",
 ]
@@ -52,7 +52,7 @@ universal = true
 
 
 [tool.bumpversion]
-current_version = "0.0.55"
+current_version = "1.0.0"
 commit = true
 tag = true
 
