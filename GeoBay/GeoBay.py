@@ -7,7 +7,7 @@ from IPython.display import display
 import  ee, leafmap, geemap
 from geemap import ee_tile_layer
 from . import hydro
-from .hydro import delineate_watershed_gee
+from .hydro import extract_streams
 
 class gb_map(IpyleafletMap):
     """
@@ -26,6 +26,9 @@ class gb_map(IpyleafletMap):
         """
         kwargs.setdefault("scroll_wheel_zoom", True)
         super().__init__(center=center, zoom=zoom, **kwargs)
+            # ✅ Initialize control tracker
+        self.layer_control = None
+        self.mode_ui = None
 
     def add_basemap(self, basemap_name: str):
         """
@@ -100,6 +103,9 @@ class gb_map(IpyleafletMap):
         hbox = widgets.HBox([toggle, dropdown, button])
 
         def on_toggle_change(change):
+            """
+            On toggle change method.
+            """
             if change["new"]:
                 hbox.children = [toggle, dropdown, button]
             else:
@@ -108,6 +114,9 @@ class gb_map(IpyleafletMap):
         toggle.observe(on_toggle_change, names="value")
 
         def on_button_click(b):
+            """
+            On button click method.
+            """
             hbox.close()
             toggle.close()
             dropdown.close()
@@ -116,6 +125,9 @@ class gb_map(IpyleafletMap):
         button.on_click(on_button_click)
 
         def on_dropdown_change(change):
+            """
+            On dropdown change method.
+            """
             if change["new"]:
                 self.layers = self.layers[:-2]
                 self.add_basemap(change["new"])
@@ -252,6 +264,9 @@ class gb_map(IpyleafletMap):
 
     
     def add_esa_worldcover(self, position="bottomright"):
+        """
+        Add esa worldcover method.
+        """
         import ipywidgets as widgets
         from ipyleaflet import WMSLayer, WidgetControl
         import leafmap
@@ -268,6 +283,9 @@ class gb_map(IpyleafletMap):
         legend_dict = leafmap.builtin_legends['ESA_WorldCover']
 
         def format_legend_html(legend_dict, title="ESA WorldCover Legend"):
+            """
+            Format legend html method.
+            """
             html = f"<div style='padding:10px;background:white;font-size:12px'><b>{title}</b><br>"
             for label, color in legend_dict.items():
                 html += f"<span style='color:#{color}'>■</span> {label}<br>"
@@ -328,6 +346,9 @@ class gb_map(IpyleafletMap):
         cmap = cm.linear.__getattribute__(colormap).scale(values.min(), values.max())
 
         def style_dict(feature):
+            """
+            Style dict method.
+            """
             value = gdf.loc[int(feature['id']), column]
             return {
                 'fillColor': cmap(value),
@@ -358,6 +379,9 @@ class gb_map(IpyleafletMap):
         import os
 
         def download_and_check(url, path):
+            """
+            Download and check method.
+            """
             file = leafmap.download_file(url, path, overwrite=overwrite)  # ✅ Ensure overwrite is passed here
             try:
                 with rasterio.open(file) as src:
@@ -421,12 +445,24 @@ class gb_map(IpyleafletMap):
 
 
     def enable_draw_bbox(self, elevation_threshold=10, post_action=None, accumulation_threshold=1000):
+        """
+        Enable draw bbox method.
+        """
         from ipyleaflet import DrawControl
         import ipywidgets as widgets
         from IPython.display import display
         import ee
         from . import hydro
 
+        self.post_action = post_action
+
+    
+        # Only apply threshold if not in Streams mode
+        if post_action in (None, "Flood") and elevation_threshold is None:
+            elevation_threshold = getattr(self, "current_threshold", 30)
+
+        self.active_threshold = elevation_threshold  # ✅ This replaces relying on a local var later
+        
         if hasattr(self, 'draw_control') and self.draw_control in self.controls:
             self.remove_control(self.draw_control)
 
@@ -441,6 +477,9 @@ class gb_map(IpyleafletMap):
         display(output)
 
         def handle_draw(event_dict):
+            """
+            Handle draw method.
+            """
             geo_json = event_dict.get("geo_json")
             if not geo_json:
                 print("No geometry found.")
@@ -452,34 +491,35 @@ class gb_map(IpyleafletMap):
             lat_min = min(pt[1] for pt in coords)
             lat_max = max(pt[1] for pt in coords)
 
-            # Create bounding box from drawn rectangle
             bbox = ee.Geometry.BBox(lon_min, lat_min, lon_max, lat_max)
-            self.bbox = bbox  # ✅ Fix: Store for later use
+            self.bbox = bbox
 
-            # Run flood if elevation threshold provided
-            if elevation_threshold is not None:
-                flood_mask = hydro.simulate_flood(bbox, elevation_threshold)
+            mode = getattr(self, "post_action", None)
+            threshold = getattr(self, "active_threshold", None)
 
+            if mode in (None, "Flood"):
+                if threshold is not None:
+                    flood_mask = hydro.simulate_flood(bbox, threshold)
+                    self.add_ee_layer(flood_mask, vis_params={"palette": ["0000FF"]}, name="Simulated Flood")
+                with output:
+                    output.clear_output()
+                    print("Flood simulation complete.")
 
-            # Optionally chain to watershed mode
-            if post_action == "Watershed":
-                print("Bounding box captured. Activating watershed tool...")
-                self.enable_draw_pour_point(bbox, accumulation_threshold=accumulation_threshold)
+            elif mode == "Streams":
+                with output:
+                    output.clear_output()
+                    print("Stream network extracted.")
+                self.show_streams(bbox, accumulation_threshold=accumulation_threshold)
 
-
-            self.add_ee_layer(flood_mask, vis_params={"palette": ["0000FF"]}, name="Simulated Flood")
             self.remove_control(draw_control)
 
-            with output:
-                output.clear_output()
-                print("Flood simulation complete.")
 
-            if post_action == "Watershed":
-                print("Bounding box captured. Activating watershed tool...")
-                self.enable_draw_pour_point(self.bbox, accumulation_threshold=accumulation_threshold)
 
         # ✅ Wrapper that absorbs either style
         def draw_wrapper(*args, **kwargs):
+            """
+            Draw wrapper method.
+            """
             if args and isinstance(args[0], dict):
                 handle_draw(args[0])  # called with a single event dict
             else:
@@ -503,6 +543,9 @@ class gb_map(IpyleafletMap):
         """
         if hasattr(self, 'draw_control'):
             def safe_callback(event):
+                """
+                Safe callback method.
+                """
                 geo_json = event.get('geo_json')
                 if geo_json:
                     callback(geo_json)
@@ -511,41 +554,45 @@ class gb_map(IpyleafletMap):
             raise AttributeError("Draw control not initialized. Call `add_draw_control()` first.")
 
 
-    def show_watershed(self, bbox, pour_point):
-        from .hydro import delineate_watershed_gee
-        try:
-            watershed_fc = delineate_watershed_gee(bbox, pour_point)
-            self.add_ee_layer(watershed_fc, {"color": "blue"}, "Watershed")
-            self.add_ee_layer(ee.Geometry.Point(pour_point), {"color": "red"}, "Pour Point")
-        except Exception as e:
-            print(f"Error delineating watershed: {e}")
+    def show_streams(self, bbox, accumulation_threshold=10):
+        """
+        Show streams method.
+        """
+        import ee
+
+        print("[DEBUG] Starting stream extraction")
+
+        flow_acc = ee.Image("MERIT/Hydro/v1_0_1").select("upa").clip(bbox.buffer(500))
+
+        # Show raw accumulation
+        self.add_ee_layer(
+            flow_acc,
+            {"min": 0, "max": 1000, "palette": ["black", "cyan", "blue", "white"]},
+            "Flow Accumulation"
+        )
+
+        # Attempt to show stream mask
+        streams = flow_acc.gt(accumulation_threshold)
+        streams_masked = streams.selfMask()
+        self.add_ee_layer(streams_masked, {"palette": ["#00FFFF"]}, "Streams - Masked")
+
+        print("[DEBUG] Streams layer added")
+
+
+
+
+
 
     def enable_mode_toggle(self, default_mode="Flood", elevation_threshold=10, accumulation_threshold=1000):
         """
-        Create a toggle UI to switch between flood simulation and watershed delineation,
-        with buttons to clear layers and reset the map.
-
-        Parameters
-        ----------
-        default_mode : str
-            Either 'Flood' or 'Watershed'
-        elevation_threshold : float
-            Elevation threshold for flood simulation
-        accumulation_threshold : int
-            Accumulation threshold for watershed delineation
+        Create a toggle UI to switch between flood simulation and stream network extraction.
         """
         import ipywidgets as widgets
-        from IPython.display import display
+        from ipyleaflet import WidgetControl
 
-        # Create mode toggle buttons
-        mode_selector = widgets.ToggleButtons(
-            options=["Flood", "Watershed"],
-            description="",
-            value=default_mode,
-            button_style='info',
-            tooltips=["Simulate flood zones", "Delineate watershed"]
-        )
+        self.mode = default_mode
 
+        # Create threshold slider
         threshold_slider = widgets.IntSlider(
             value=30,
             min=10,
@@ -553,107 +600,106 @@ class gb_map(IpyleafletMap):
             step=1,
             description='Flood Elevation (m):',
             continuous_update=False,
-            style={'description_width': 'initial'}
+            layout=widgets.Layout(width="300px"),
+            style={'description_width': '150px'}  # or however wide you want the label
         )
 
-        # Clear and Reset buttons
+        self.threshold_slider = threshold_slider
+        self.current_threshold = threshold_slider.value
+
+        # Create toggle buttons
+        mode_selector = widgets.ToggleButtons(
+            options=["Flood", "Streams"],
+            description="",
+            value=default_mode,
+            button_style='info',
+            tooltips=["Simulate flood zones", "Show stream network"],
+        )
+
+        # Buttons and output
         clear_button = widgets.Button(description="🧹 Clear Layers", button_style="warning")
         reset_button = widgets.Button(description="🔄 Reset Map", button_style="danger")
-
-        # Output display
         output = widgets.Output()
 
+        # === Event Handlers ===
+
+        def on_slider_change(change):
+            """
+            On slider change method.
+            """
+            if mode_selector.value == "Flood":
+                self.current_threshold = change["new"]
+                self.enable_draw_bbox(elevation_threshold=self.current_threshold)
+                with output:
+                    output.clear_output()
+                    print(f"Flood threshold changed to {self.current_threshold}m")
+
         def on_mode_change(change):
+            """
+            On mode change method.
+            """
             if change['name'] == 'value':
+                self.mode = change['new']
                 with output:
                     output.clear_output()
                     print(f"Switched to {change['new']} mode.")
 
-                if change['new'] == "Flood":
-                    threshold = threshold_slider.value  # ✅ get slider value
-                    with output:
-                        output.clear_output()
-                        print(f"Simulating flood with threshold: {threshold}m")
-                    threshold = threshold_slider.value
-                    print(f"Passing threshold from slider: {threshold}m")
-                    self.enable_draw_bbox(elevation_threshold=threshold)
-
-                elif change['new'] == "Watershed":
-                    if hasattr(self, "bbox"):
-                        self.enable_draw_pour_point(self.bbox, accumulation_threshold=accumulation_threshold)
-                    else:
-                        with output:
-                            output.clear_output()
-                            print("Draw a box to define your watershed area.")
-                        self.enable_draw_bbox(elevation_threshold=None, post_action="Watershed", accumulation_threshold=accumulation_threshold)
+                if self.mode == "Flood":
+                    self.threshold_slider.layout.visibility = "visible"
+                    self.enable_draw_bbox(elevation_threshold=self.current_threshold)
+                elif self.mode == "Streams":
+                    self.threshold_slider.layout.visibility = "hidden"
+                    print("Draw a bounding box to extract stream network.")
+                    self.enable_draw_bbox(elevation_threshold=None, post_action="Streams")
 
         def on_clear_clicked(b):
+            """
+            On clear clicked method.
+            """
             self.clear_layers()
+            self.reactivate_current_mode()
             with output:
                 output.clear_output()
                 print("Cleared all layers.")
 
         def on_reset_clicked(b):
+            """
+            On reset clicked method.
+            """
             self.reset_map()
             with output:
                 output.clear_output()
                 print("Map reset (layers, bbox, and draw tools cleared).")
-            # Re-enable the current mode (default to Flood if none active)
-            if hasattr(self, "mode") and self.mode == "Watershed":
-                if hasattr(self, "bbox"):
-                    self.enable_draw_pour_point(self.bbox)
-                else:
-                    self.enable_draw_bbox(elevation_threshold=None, post_action="Watershed")
-            else:
-                # Default back to Flood mode using the slider (if it exists)
-                try:
-                    self.enable_draw_bbox(elevation_threshold=self.threshold_slider.value)
-                except:
-                    self.enable_draw_bbox(elevation_threshold=10)
-    
 
-
-        
-
-        def on_slider_change(change):
-            if mode_selector.value == "Flood":
-                threshold = change["new"]
-                self.enable_draw_bbox(elevation_threshold=threshold)
-                with output:
-                    output.clear_output()
-                    print(f"Flood threshold changed to {threshold}m")
-
-            # Attach event listeners
-            # Attach event listeners
-            # Ensure mode_selector is defined and properly indented
-        
+        # Attach event listeners
         threshold_slider.observe(on_slider_change, names="value")
-
         mode_selector.observe(on_mode_change)
         clear_button.on_click(on_clear_clicked)
         reset_button.on_click(on_reset_clicked)
 
-            # Layout: Mode toggle + control buttons
+        # === Layout ===
         ui = widgets.VBox([
             widgets.HBox([mode_selector, clear_button, reset_button]),
             threshold_slider,
             output
         ])
+
+        # === Add to map (with duplication protection) ===
+        if hasattr(self, "ui_control") and self.ui_control in self.controls:
+            self.remove_control(self.ui_control)
+
+        from IPython.display import display
         display(ui)
-                
-            # Automatically load draw tool for default mode
+
+        self.ensure_layer_control()
+
+        # === Initial draw setup ===
         if default_mode == "Flood":
-            self.enable_draw_bbox(elevation_threshold=threshold_slider.value)
-        elif default_mode == "Watershed":
-            if hasattr(self, "bbox"):
-                self.enable_draw_pour_point(self.bbox, accumulation_threshold=accumulation_threshold)
-            else:
-                print("Draw a bounding box first to begin watershed delineation.")
-                self.enable_draw_bbox(
-                    elevation_threshold=None,
-                    post_action="Watershed",
-                    accumulation_threshold=accumulation_threshold
-                )
+            self.enable_draw_bbox(elevation_threshold=self.current_threshold)
+        elif default_mode == "Streams":
+            self.threshold_slider.layout.display = "none"
+            self.enable_draw_bbox(elevation_threshold=None, post_action="Streams")
+
 
 
     def clear_layers(self):
@@ -673,26 +719,21 @@ class gb_map(IpyleafletMap):
             
     def reset_map(self):
         """
-        Fully resets the map: clears layers, removes draw controls, resets bbox and tools.
+        Reset map method.
         """
         self.clear_layers()
+
         if hasattr(self, "draw_control") and self.draw_control in self.controls:
             self.remove_control(self.draw_control)
 
         if hasattr(self, "bbox"):
             del self.bbox
 
-        self.add_layer_control()
 
-    def enable_draw_pour_point(self, bbox, accumulation_threshold=1000):
-        """
-        Enable interactive pour point selection for watershed delineation.
-        """
-        from ipyleaflet import DrawControl
-        import ipywidgets as widgets
-        from IPython.display import display
-        from . import hydro
+        # Reactivate draw tool based on current mode
+        self.reactivate_current_mode()
 
+        
         # Remove any existing draw controls
         if hasattr(self, 'draw_control') and self.draw_control in self.controls:
             self.remove_control(self.draw_control)
@@ -708,6 +749,9 @@ class gb_map(IpyleafletMap):
         display(output)
 
         def handle_draw(event_dict):
+            """
+            Handle draw method.
+            """
             geo_json = event_dict.get("geo_json")
             if not geo_json:
                 print("No geometry found.")
@@ -733,10 +777,43 @@ class gb_map(IpyleafletMap):
         self.add_control(draw_control)
         print("✅ Pour point draw tool activated")
 
-    def ensure_layer_control(self):
-        # Remove any existing LayerControl safely
-        for control in list(self.controls):  # use list() to avoid mutation error
+    def add_layer_control(self, position="topright"):
+        """
+        Add layer control method.
+        """
+
+        # Remove any existing LayersControl, even if not tracked in self.layer_control
+        for control in list(self.controls):
             if isinstance(control, LayersControl):
                 self.remove_control(control)
+
+        # Create and store the new control
+        control = LayersControl(position=position)
+        self.add_control(control)
+        self.layer_control = control
+
+
+    def ensure_layer_control(self):
+        """
+        Ensure layer control method.
+        """
+        # Remove any existing LayerControl safely
         self.add_layer_control()
 
+
+    def reactivate_current_mode(self):
+        """
+        Reactivates the currently selected mode and re-enables the appropriate draw tools.
+        """
+        if hasattr(self, "mode"):
+            if self.mode == "Watershed":
+                print("Reactivating watershed mode after reset.")
+                self.enable_draw_bbox(elevation_threshold=None, post_action="Watershed")
+            elif self.mode == "Streams":
+                print("Reactivating streams mode after reset.")
+                self.threshold_slider.layout.visibility = 'hidden'  # ✅ Hide slider
+                self.enable_draw_bbox(elevation_threshold=None, post_action="Streams")
+            elif self.mode == "Flood":
+                print(f"Reactivating flood mode after reset with threshold {self.current_threshold}m.")
+                self.threshold_slider.layout.visibility = 'visible'  # ✅ Show slider
+                self.enable_draw_bbox(elevation_threshold=self.current_threshold)

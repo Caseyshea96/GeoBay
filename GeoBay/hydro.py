@@ -43,45 +43,32 @@ def simulate_flood(bbox, elevation_threshold=10):
     flood = dem_masked.lt(elevation_threshold).selfMask().rename("Flood")
     return flood.clip(bbox)
 
-    
-
-import ee
-import geemap
-
-ee.Initialize()
-
-def delineate_watershed_gee(bbox, pour_point, accumulation_threshold=1000):
+def extract_streams(bbox, accumulation_threshold=1000):
     """
-    Returns the watershed polygon as an ee.FeatureCollection.
+    Extract stream network from MERIT Hydro based on accumulation threshold.
+
+    Parameters
+    ----------
+    bbox : ee.Geometry
+        Bounding box of the area.
+    accumulation_threshold : int
+        Flow accumulation threshold to define streams.
+
+    Returns
+    -------
+    ee.FeatureCollection
+        Stream vector lines clipped to the bounding box.
     """
     import ee
-
     flow_acc = ee.Image("MERIT/Hydro/v1_0_1").select("upa").clip(bbox.buffer(500))
     streams = flow_acc.gt(accumulation_threshold)
 
-    pt = ee.Geometry.Point(pour_point)
-    search_area = pt.buffer(300)
-    snapped = streams.reduceToVectors(
-        geometry=search_area,
-        geometryType='centroid',
-        scale=90,
-        maxPixels=1e8
-    ).geometry()
-
-    snapped_point = ee.Algorithms.If(snapped.isEmpty(), pt, snapped)
-    source = ee.Image().toByte().paint(ee.Geometry(snapped_point), 1)
-
-    watershed_mask = flow_acc.gte(accumulation_threshold).cumulativeCost(
-        source=source,
-        maxDistance=1e7
-    ).lt(500)
-
-    watershed_fc = watershed_mask.selfMask().reduceToVectors(
+    # Convert raster stream pixels to vector lines
+    vector_streams = streams.reduceToVectors(
         geometry=bbox,
+        geometryType='line',
         scale=90,
-        geometryType='polygon',
         maxPixels=1e8
     )
 
-    return watershed_fc
-
+    return vector_streams
