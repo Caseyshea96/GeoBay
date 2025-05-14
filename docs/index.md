@@ -13,4 +13,9 @@
 
 ## Features
 
--   Create flood maps from Google Earth Engine data by drawing box
+Using Google Earth Engine Data:
+-   Create flood maps
+-   Create stream analysis maps
+
+
+Little coding skills necessary

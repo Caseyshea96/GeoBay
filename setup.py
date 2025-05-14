@@ -1,8 +1,8 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="GeoBay",
-    version="0.0.1",
+    name="geobay",
+    version="1.0.0",
     description="A package for Geography",
     author="Casey Shea",
     author_email="shea96@gmail.com",

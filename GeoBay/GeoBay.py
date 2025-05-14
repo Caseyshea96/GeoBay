@@ -4,7 +4,7 @@ from ipyleaflet import Map as IpyleafletMap, TileLayer, GeoJSON, LayersControl, 
 import geopandas as gpd
 import ipywidgets as widgets
 from IPython.display import display
-import  ee, leafmap, geemap
+import  geemap
 from geemap import ee_tile_layer
 from . import hydro
 from .hydro import extract_streams

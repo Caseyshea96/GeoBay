@@ -1,3 +1,9 @@
 numpy
 ipyleaflet>=0.17.0
 geopandas>=0.10.0
+mkdocs>=1.4.0
+mkdocstrings
+mkdocstrings-python
+ipywidgets
+earthengine-api
+geemap
