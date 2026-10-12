@@ -2,7 +2,6 @@
 
 """Tests for `geobay` package."""
 
-
 import unittest
 
 from geobay import geobay
